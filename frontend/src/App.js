@@ -6,6 +6,8 @@ import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import { Modal } from './context/Modal';
+import AllRestaurants from './components/Restaurants/AllRestaurants';
+import SingleRestaurant from './components/Restaurants/SingleRestaurant';
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -28,8 +30,14 @@ function App() {
           {/* <Route path="/login" >
             <LoginFormPage />
           </Route> */}
-          <Route path='/signup'>
+          <Route exact path='/signup'>
             <SignupFormPage />
+          </Route>
+          <Route exact path='/restaurants'>
+            <AllRestaurants />
+          </Route>
+          <Route exact path='/restaurants/:restId'>
+            <SingleRestaurant />
           </Route>
         </Switch>
       )}
