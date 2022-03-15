@@ -1,0 +1,81 @@
+"use strict";
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkInsert(
+      "Reservations",
+      [
+        {
+          userId: 1,
+          restaurantId: 1,
+          time: new Date(),
+          numPpl: 2,
+          specialReq: "Birthday Dinner",
+        },
+        {
+          userId: 1,
+          restaurantId: 1,
+          time: new Date(),
+          numPpl: 4,
+        },
+        {
+          userId: 1,
+          restaurantId: 1,
+          time: new Date(),
+          numPpl: 6,
+          specialReq: "Party",
+        },
+        {
+          userId: 1,
+          restaurantId: 2,
+          time: new Date(),
+          numPpl: 2,
+        },
+        {
+          userId: 1,
+          restaurantId: 2,
+          time: new Date(),
+          numPpl: 2,
+        },
+        {
+          userId: 1,
+          restaurantId: 3,
+          time: new Date(),
+          numPpl: 2,
+          specialReq: "Date night",
+        },
+        {
+          userId: 1,
+          restaurantId: 3,
+          time: new Date(),
+          numPpl: 10,
+          specialReq: "Promotion",
+        },
+        {
+          userId: 1,
+          restaurantId: 4,
+          time: new Date(),
+          numPpl: 2,
+        },
+        {
+          userId: 1,
+          restaurantId: 4,
+          time: new Date(),
+          numPpl: 4,
+          specialReq: "Family event",
+        },
+        {
+          userId: 1,
+          restaurantId: 5,
+          time: new Date(),
+          numPpl: 2,
+        },
+      ],
+      {}
+    );
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete("Reservations", null, {});
+  },
+};
