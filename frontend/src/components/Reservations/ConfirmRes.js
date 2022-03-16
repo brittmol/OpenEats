@@ -1,8 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getReservations } from "../../store/reservations";
 
-export default function AllReservations() {
+export default function ConfirmRes() {
+  const { resId } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -10,7 +12,7 @@ export default function AllReservations() {
   }, [dispatch]);
 
   const reservations = useSelector((store) => store.reservationReducer);
-  const resArray = Object.values(reservations);
+  const res = reservations[resId];
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
   const time = (resTime) =>
@@ -21,19 +23,17 @@ export default function AllReservations() {
 
   return (
     <>
-      <h1>Welcome to OpenEats! Here are Restaurants:</h1>
-      {resArray?.map((res) => (
-        <div key={res?.id}>
-          <ul>
-            <li>{res?.User?.username}</li>
-            <li>{res?.Restaurant?.title}</li>
-            <li>{date(res?.time)}</li>
-            <li>{time(res?.time)}</li>
-            <li>{res?.numPpl}</li>
-            <li>{res?.specialReq}</li>
-          </ul>
-        </div>
-      ))}
+      <h1>Confirmed Reservation!</h1>
+      <div>
+        <ul>
+          <li>{res?.User?.username}</li>
+          <li>{res?.Restaurant?.title}</li>
+          <li>{date(res?.time)}</li>
+          <li>{time(res?.time)}</li>
+          <li>{res?.numPpl}</li>
+          <li>{res?.specialReq}</li>
+        </ul>
+      </div>
     </>
   );
 }

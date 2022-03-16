@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
@@ -37,7 +37,7 @@ export default function CreateResForm({ restaurant, sessionUser }) {
 
   const [time, setTime] = useState(startDateValue());
   const [numPpl, setNumPpl] = useState(2);
-  const [specialReq, setSpecialReq] = useState(null);
+  const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -57,9 +57,12 @@ export default function CreateResForm({ restaurant, sessionUser }) {
       if (data && data.errors) return setErrors(data.errors);
     });
 
-    setTime(startDateValue());
-    setNumPpl(2);
-    setSpecialReq(null);
+    if (newRes) {
+      setTime(startDateValue());
+      setNumPpl(2);
+      setSpecialReq("");
+      return history.push(`/reservations/${newRes.id}/confirmation`);
+    }
   };
 
   return (
@@ -107,7 +110,12 @@ export default function CreateResForm({ restaurant, sessionUser }) {
             onChange={(e) => setNumPpl(e.target.value)}
           />
         </div>
-        <button type="submit">Complete Reservation</button>
+        <textarea
+          placeholder="Add a special request (optional)"
+          value={specialReq}
+          onChange={(e) => setSpecialReq(e.target.value)}
+        />
+        <button type="submit">Find a Table</button>
       </form>
     </>
   );

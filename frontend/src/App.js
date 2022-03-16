@@ -10,6 +10,7 @@ import AllRestaurants from "./components/Restaurants/AllRestaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import EditRestaurantForm from "./components/Restaurants/EditRestaurant";
+import ConfirmRes from "./components/Reservations/ConfirmRes";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,7 +55,7 @@ function App() {
             <h1>Component: CreateReservation</h1>
           </Route>
           <Route exact path="/reservations/:resId/confirmation">
-            <h1>Component: Confirmation</h1>
+            <ConfirmRes />
           </Route>
           <Route exact path="/users/:userId/profile">
             <h1>Component: UserProfile</h1>

@@ -28,7 +28,7 @@ export default function SingleRestaurant() {
       <div>{rest?.Category?.type}</div>
       <div>{rest?.description}</div>
       <CreateResForm restaurant={rest} sessionUser={sessionUser} />
-      <AllReservations />
+      {/* <AllReservations /> */}
       {/* <div>Reviews:</div> */}
     </>
   );

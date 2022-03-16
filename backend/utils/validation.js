@@ -68,9 +68,14 @@ const validateReservation = [
   //   .isDate()
   //   .withMessage("Please provide a valid date and time for your reservation."),
   check("numPpl")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide the number of people for your reservation.")
+    // .exists({ checkFalsy: true })
+    // .withMessage(
+    //   "Please provide between 1 and 10 people for your reservation."
+    // )
     .isNumeric()
+    .withMessage(
+      "Please provide a valid number of people for your reservation."
+    )
     .isLength({ min: 1, max: 10 })
     .withMessage(
       "Please provide between 1 and 10 people for your reservation."
