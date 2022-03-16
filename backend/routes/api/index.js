@@ -2,8 +2,9 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-const restaurantsRouter = require("./restaurants.js");
 const categoriesRouter = require("./categories.js");
+const restaurantsRouter = require("./restaurants.js");
+const reservationsRouter = require("./reservations.js");
 
 // router.post("/test", function (req, res) {
 //   res.json({ requestBody: req.body });
@@ -12,8 +13,9 @@ const categoriesRouter = require("./categories.js");
 // ------------------ routers ------------------------------------------
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
-router.use("/restaurants", restaurantsRouter);
 router.use("/categories", categoriesRouter);
+router.use("/restaurants", restaurantsRouter);
+router.use("/reservations", reservationsRouter);
 
 // ------------------ EXPORTS ------------------------------------------
 module.exports = router;

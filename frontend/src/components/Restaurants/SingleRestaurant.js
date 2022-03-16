@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
+import AllReservations from "../Reservations/AllRes";
 
 export default function SingleRestaurant() {
   const { restId } = useParams();
@@ -25,7 +26,8 @@ export default function SingleRestaurant() {
       ) : null}
       <div>{rest?.Category?.type}</div>
       <div>{rest?.description}</div>
-      <div>Reviews:</div>
+      <AllReservations />
+      {/* <div>Reviews:</div> */}
     </>
   );
 }
