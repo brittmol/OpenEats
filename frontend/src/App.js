@@ -9,6 +9,7 @@ import { Modal } from "./context/Modal";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
+import EditRestaurantForm from "./components/Restaurants/EditRestaurant";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -38,7 +39,6 @@ function App() {
             <AllRestaurants />
           </Route>
           <Route exact path="/restaurants/new">
-            {/* <h1>Component: CreateRestaurant</h1> */}
             <CreateRestaurantForm />
           </Route>
           {/* <Route exact path='/restaurants/:search'>
@@ -48,7 +48,7 @@ function App() {
             <SingleRestaurant />
           </Route>
           <Route exact path="/restaurants/:restId/edit">
-            <h1>Component: EditRestaurant</h1>
+            <EditRestaurantForm />
           </Route>
           <Route exact path="/reservations/new">
             <h1>Component: CreateReservation</h1>

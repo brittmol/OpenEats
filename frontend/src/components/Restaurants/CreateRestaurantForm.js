@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createRestaurant } from "../../store/restaurants";
 import { getCategories } from "../../store/categories";
-import { csrfFetch } from "../../store/csrf";
 
 export default function CreateRestaurantForm() {
   const dispatch = useDispatch();
