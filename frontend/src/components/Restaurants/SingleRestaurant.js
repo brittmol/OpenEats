@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import AllReservations from "../Reservations/AllRes";
+import CreateResForm from "../Reservations/CreateRes";
 
 export default function SingleRestaurant() {
   const { restId } = useParams();
@@ -26,6 +27,7 @@ export default function SingleRestaurant() {
       ) : null}
       <div>{rest?.Category?.type}</div>
       <div>{rest?.description}</div>
+      <CreateResForm restaurant={rest} sessionUser={sessionUser} />
       <AllReservations />
       {/* <div>Reviews:</div> */}
     </>

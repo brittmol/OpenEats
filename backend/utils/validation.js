@@ -64,9 +64,9 @@ const validateReview = [
 ];
 
 const validateReservation = [
-  check("time")
-    .isDate()
-    .withMessage("Please provide a valid date and time for your reservation."),
+  // check("time")
+  //   .isDate()
+  //   .withMessage("Please provide a valid date and time for your reservation."),
   check("numPpl")
     .exists({ checkFalsy: true })
     .withMessage("Please provide the number of people for your reservation.")
