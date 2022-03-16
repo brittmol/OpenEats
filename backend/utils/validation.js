@@ -74,7 +74,6 @@ const validateReservation = [
 // ---------------- Exports -----------------------------------------------
 
 module.exports = {
-  // handleValidationErrors,
   validateRestaurant,
   validateReservation,
   validateReview,
