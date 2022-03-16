@@ -122,6 +122,28 @@ export default function EditRestaurantForm() {
             onChange={(e) => setZipCode(e.target.value)}
           />
           <button type="submit">Update Restaurant</button>
+          <button
+            onClick={() => {
+              setCategory(rest?.categoryId);
+              setTitle(rest?.title);
+              setDescription(rest?.description);
+              setAddress(rest?.address);
+              setCity(rest?.city);
+              setState(rest?.state);
+              setZipCode(rest?.zipCode);
+              history.push(`/restaurants/${restId}`);
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              dispatch(removeRestaurant(rest));
+              history.push(`/restaurants`);
+            }}
+          >
+            Delete Restaurant
+          </button>
         </form>
       ) : (
         <Redirect to={`/restaurants/${restId}`} />
