@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import { Modal } from "./context/Modal";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
 import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
+import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,6 +37,10 @@ function App() {
           <Route exact path="/restaurants">
             <AllRestaurants />
           </Route>
+          <Route exact path="/restaurants/new">
+            {/* <h1>Component: CreateRestaurant</h1> */}
+            <CreateRestaurantForm />
+          </Route>
           {/* <Route exact path='/restaurants/:search'>
             <h1>Component: Searched List </h1>
           </Route> */}
@@ -44,9 +49,6 @@ function App() {
           </Route>
           <Route exact path="/restaurants/:restId/edit">
             <h1>Component: EditRestaurant</h1>
-          </Route>
-          <Route exact path="/restaurants/new">
-            <h1>Component: CreateRestaurant</h1>
           </Route>
           <Route exact path="/reservations/new">
             <h1>Component: CreateReservation</h1>

@@ -46,8 +46,6 @@ router.get(
   })
 );
 
-// editttttttttttttt
-
 router.post(
   "/",
   requireAuth,

@@ -17,7 +17,7 @@ export default function SingleRestaurant() {
   return (
     <>
       <h1>{rest?.title}</h1>
-      <div>{rest?.Category.type}</div>
+      <div>{rest?.Category?.type}</div>
       <div>{rest?.description}</div>
       <div>Reviews:</div>
     </>

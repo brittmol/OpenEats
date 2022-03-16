@@ -3,6 +3,7 @@ const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const restaurantsRouter = require("./restaurants.js");
+const categoriesRouter = require("./categories.js");
 
 // router.post("/test", function (req, res) {
 //   res.json({ requestBody: req.body });
@@ -12,6 +13,7 @@ const restaurantsRouter = require("./restaurants.js");
 router.use("/session", sessionRouter);
 router.use("/users", usersRouter);
 router.use("/restaurants", restaurantsRouter);
+router.use("/categories", categoriesRouter);
 
 // ------------------ EXPORTS ------------------------------------------
 module.exports = router;
