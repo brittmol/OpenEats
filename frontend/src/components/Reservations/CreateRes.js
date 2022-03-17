@@ -12,8 +12,6 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // toUTCString()
-
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
     return this;

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { getReservations } from "../../store/reservations";
 
 export default function UserReservations() {
@@ -23,19 +23,27 @@ export default function UserReservations() {
 
   return (
     <>
-      <h1>{sessionUser?.firstName}'s Reservations:</h1>
-      {resArray?.map((res) => (
-        <div key={res?.id}>
-          <ul>
-            <li>{res?.User?.username}</li>
-            <li>{res?.Restaurant?.title}</li>
-            <li>{date(res?.time)}</li>
-            <li>{time(res?.time)}</li>
-            <li>{res?.numPpl}</li>
-            <li>{res?.specialReq}</li>
-          </ul>
-        </div>
-      ))}
+      {sessionUser?.id && userId == sessionUser?.id ? (
+        <>
+          <h1>{sessionUser?.firstName}'s Reservations:</h1>
+          {resArray?.map((res) => (
+            <div key={res?.id}>
+              <ul>
+                <li>{res?.User?.username}</li>
+                <li>{res?.Restaurant?.title}</li>
+                <li>{date(res?.time)}</li>
+                <li>{time(res?.time)}</li>
+                <li>{res?.numPpl}</li>
+                <li>{res?.specialReq}</li>
+              </ul>
+            </div>
+          ))}
+        </>
+      ) : sessionUser ? (
+        <Redirect to={`/users/${sessionUser?.id}/profile`} />
+      ) : (
+        <Redirect to="/signup" />
+      )}
     </>
   );
 }
