@@ -6,6 +6,8 @@ export default function UserProfile() {
   const sessionUser = useSelector((store) => store.session.user);
   // userId is a string, sessionUser.id is a number, using == will see if they are equal
 
+  // if user is not same user as userId, history.push
+  // if user is not logged in, redirect to signup
   return (
     <>
       {sessionUser?.id && userId == sessionUser?.id ? (

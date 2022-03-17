@@ -1,10 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams, Redirect } from "react-router-dom";
-import { getReservations } from "../../store/reservations";
+import { useParams, useHistory, Redirect, Link } from "react-router-dom";
+import { getReservations, removeRes } from "../../store/reservations";
 
 export default function UserReservations() {
   const dispatch = useDispatch();
+  const history = useHistory();
+
   const { userId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
   const reservations = useSelector((store) => store.reservationReducer);
@@ -36,6 +38,17 @@ export default function UserReservations() {
                 <li>{res?.numPpl}</li>
                 <li>{res?.specialReq}</li>
               </ul>
+              <button>
+                <Link to={`/reservations/${res?.id}/edit`}>Modify</Link>
+              </button>
+              <button
+                onClick={() => {
+                  dispatch(removeRes(res));
+                  history.push(`/users/${sessionUser?.id}/reservations`);
+                }}
+              >
+                Delete
+              </button>
             </div>
           ))}
         </>
