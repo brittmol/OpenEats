@@ -11,6 +11,7 @@ import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import EditRestaurantForm from "./components/Restaurants/EditRestaurant";
 import ConfirmRes from "./components/Reservations/ConfirmRes";
+import UserReservations from "./components/User/UserReservations";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,27 +52,27 @@ function App() {
           <Route exact path="/restaurants/:restId/edit">
             <EditRestaurantForm />
           </Route>
-          <Route exact path="/reservations/new">
+          {/* <Route exact path="/reservations/new">
             <h1>Component: CreateReservation</h1>
-          </Route>
+          </Route> */}
           <Route exact path="/reservations/:resId/confirmation">
             <ConfirmRes />
+          </Route>
+          <Route exact path="/reservations/:resId/edit">
+            <h1>Component: EditReservation </h1>
           </Route>
           <Route exact path="/users/:userId/profile">
             <h1>Component: UserProfile</h1>
           </Route>
           <Route exact path="/users/:userId/reservations">
-            <h1>Component: UserReservations </h1>
-          </Route>
-          <Route exact path="/users/:userId/reservations/:resId/edit">
-            <h1>Component: EditReservation </h1>
+            <UserReservations />
           </Route>
           {/* <Route exact path='/users/:userId/favorites'>
             <h1>Component: UserFavorites</h1>
           </Route> */}
-          <Route exact path="/users/:userId/reviews">
+          {/* <Route exact path="/users/:userId/reviews">
             <h1>Component: UserReviews</h1>
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

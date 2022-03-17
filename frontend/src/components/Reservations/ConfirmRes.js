@@ -4,15 +4,15 @@ import { useParams } from "react-router-dom";
 import { getReservations } from "../../store/reservations";
 
 export default function ConfirmRes() {
-  const { resId } = useParams();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getReservations());
-  }, [dispatch]);
-
+  const { resId } = useParams();
+  const sessionUser = useSelector((store) => store.session.user);
   const reservations = useSelector((store) => store.reservationReducer);
   const res = reservations[resId];
+
+  useEffect(() => {
+    dispatch(getReservations(sessionUser.id));
+  }, [dispatch]);
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
   const time = (resTime) =>

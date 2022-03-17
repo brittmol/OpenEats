@@ -26,8 +26,8 @@ export const deleteRes = (res) => {
 };
 
 /* ----- THUNK ------ (communicates to backend api and retrieves it) */
-export const getReservations = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/reservations`);
+export const getReservations = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/users/${userId}/reservations`);
   if (response.ok) {
     const reservations = await response.json();
     dispatch(loadRes(reservations));

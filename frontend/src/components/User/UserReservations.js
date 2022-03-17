@@ -1,17 +1,18 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { getReservations } from "../../store/reservations";
 
-export default function AllReservations() {
+export default function UserReservations() {
   const dispatch = useDispatch();
+  const { userId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
-
-  useEffect(() => {
-    dispatch(getReservations(sessionUser.id));
-  }, [dispatch]);
-
   const reservations = useSelector((store) => store.reservationReducer);
   const resArray = Object.values(reservations);
+
+  useEffect(() => {
+    dispatch(getReservations(userId));
+  }, [dispatch]);
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
   const time = (resTime) =>
@@ -22,7 +23,7 @@ export default function AllReservations() {
 
   return (
     <>
-      <h1>Welcome to OpenEats! Here are Restaurants:</h1>
+      <h1>{sessionUser?.firstName}'s Reservations:</h1>
       {resArray?.map((res) => (
         <div key={res?.id}>
           <ul>

@@ -11,11 +11,7 @@ const {
   User,
 } = require("../../db/models");
 
-const {
-  validateRestaurant,
-  validateReservation,
-  validateReview,
-} = require("../../utils/validation");
+const { validateRestaurant } = require("../../utils/validation");
 
 const router = express.Router();
 
