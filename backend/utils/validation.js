@@ -98,9 +98,9 @@ const validateReview = [
 ];
 
 const validateReservation = [
-  // check("time")
-  //   .isDate()
-  //   .withMessage("Please provide a valid date and time for your reservation."),
+  check("time")
+    .isISO8601().toDate()
+    .withMessage("Please provide a valid date and time for your reservation."),
   check("numPpl")
     // .exists({ checkFalsy: true })
     // .withMessage(
