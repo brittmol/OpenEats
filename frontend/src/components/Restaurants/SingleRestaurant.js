@@ -1,8 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 
 export default function SingleRestaurant() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, [dispatch]);
+
   const { restId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
   const restaurants = useSelector((store) => store.restaurantReducer);
