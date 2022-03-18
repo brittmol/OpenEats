@@ -20,13 +20,13 @@ export default function EditRestaurantForm() {
   const categories = useSelector((store) => store.categoryReducer);
   const categoriesArr = Object.values(categories);
 
-  const [category, setCategory] = useState(rest?.categoryId || "");
-  const [title, setTitle] = useState(rest?.title || "");
-  const [description, setDescription] = useState(rest?.description || "");
-  const [address, setAddress] = useState(rest?.address || "");
-  const [city, setCity] = useState(rest?.city || "");
-  const [state, setState] = useState(rest?.state || "");
-  const [zipCode, setZipCode] = useState(rest?.zipCode || "");
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState("");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {

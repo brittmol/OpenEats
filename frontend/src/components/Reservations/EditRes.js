@@ -18,9 +18,9 @@ export default function EditResForm() {
   console.log("reserva", reservations);
   console.log("res", res);
 
-  const [time, setTime] = useState(new Date(res?.time) || null);
-  const [numPpl, setNumPpl] = useState(res?.numPpl || null);
-  const [specialReq, setSpecialReq] = useState(res?.specialReq || "");
+  const [time, setTime] = useState(null);
+  const [numPpl, setNumPpl] = useState(null);
+  const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
