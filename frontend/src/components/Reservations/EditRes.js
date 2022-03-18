@@ -16,7 +16,7 @@ export default function EditResForm() {
 
   useEffect(() => {
     dispatch(getReservations(sessionUser.id));
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   const [time, setTime] = useState(new Date(res?.time) || null);
   const [numPpl, setNumPpl] = useState(res?.numPpl || null);

@@ -13,8 +13,8 @@ export default function UserReservations() {
   const resArray = Object.values(reservations);
 
   useEffect(() => {
-    dispatch(getReservations(userId));
-  }, [dispatch]);
+    dispatch(getReservations(sessionUser?.id));
+  }, [dispatch, sessionUser]);
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
   const time = (resTime) =>

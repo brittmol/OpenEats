@@ -12,7 +12,7 @@ export default function ConfirmRes() {
 
   useEffect(() => {
     dispatch(getReservations(sessionUser.id));
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
   const time = (resTime) =>
