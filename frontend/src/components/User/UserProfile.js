@@ -10,20 +10,12 @@ export default function UserProfile() {
   // if user is not logged in, redirect to signup
   return (
     <>
-      {sessionUser?.id && userId == sessionUser?.id ? (
-        <>
-          <h1>Account Details</h1>
-          <div>
-            {sessionUser?.firstName} {sessionUser?.lastName}
-          </div>
-          <div>{sessionUser?.username}</div>
-          <div>{sessionUser?.email}</div>
-        </>
-      ) : sessionUser ? (
-        <Redirect to={`/users/${sessionUser?.id}/profile`} />
-      ) : (
-        <Redirect to="/signup" />
-      )}
+      <h1>Account Details</h1>
+      <div>
+        {sessionUser?.firstName} {sessionUser?.lastName}
+      </div>
+      <div>{sessionUser?.username}</div>
+      <div>{sessionUser?.email}</div>
     </>
   );
 }

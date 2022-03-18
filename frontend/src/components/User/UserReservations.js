@@ -25,38 +25,30 @@ export default function UserReservations() {
 
   return (
     <>
-      {sessionUser?.id && userId == sessionUser?.id ? (
-        <>
-          <h1>{sessionUser?.firstName}'s Reservations:</h1>
-          {resArray?.map((res) => (
-            <div key={res?.id}>
-              <ul>
-                <li>{res?.User?.username}</li>
-                <li>{res?.Restaurant?.title}</li>
-                <li>{date(res?.time)}</li>
-                <li>{time(res?.time)}</li>
-                <li>{res?.numPpl}</li>
-                <li>{res?.specialReq}</li>
-              </ul>
-              <button>
-                <Link to={`/reservations/${res?.id}/edit`}>Modify</Link>
-              </button>
-              <button
-                onClick={() => {
-                  dispatch(removeRes(res));
-                  history.push(`/users/${sessionUser?.id}/reservations`);
-                }}
-              >
-                Delete
-              </button>
-            </div>
-          ))}
-        </>
-      ) : sessionUser ? (
-        <Redirect to={`/users/${sessionUser?.id}/profile`} />
-      ) : (
-        <Redirect to="/signup" />
-      )}
+      <h1>{sessionUser?.firstName}'s Reservations:</h1>
+      {resArray?.map((res) => (
+        <div key={res?.id}>
+          <ul>
+            <li>{res?.User?.username}</li>
+            <li>{res?.Restaurant?.title}</li>
+            <li>{date(res?.time)}</li>
+            <li>{time(res?.time)}</li>
+            <li>{res?.numPpl}</li>
+            <li>{res?.specialReq}</li>
+          </ul>
+          <button>
+            <Link to={`/reservations/${res?.id}/edit`}>Modify</Link>
+          </button>
+          <button
+            onClick={() => {
+              dispatch(removeRes(res));
+              // history.push(`/users/${sessionUser?.id}/reservations`);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      ))}
     </>
   );
 }

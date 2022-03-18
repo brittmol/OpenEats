@@ -64,90 +64,86 @@ export default function EditRestaurantForm() {
 
   return (
     <>
-      {sessionUser?.id && rest?.ownerId === sessionUser?.id ? (
-        <form onSubmit={handleSubmit}>
-          <h1>Update Restaurant</h1>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+      <form onSubmit={handleSubmit}>
+        <h1>Update Restaurant</h1>
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <label>
+          Cuisine:
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="">Choose a Cuisine</option>
+            {categoriesArr?.map((category) => (
+              <option key={category?.id} value={category?.id}>
+                {category?.type}
+              </option>
             ))}
-          </ul>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <label>
-            Cuisine:
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">Choose a Cuisine</option>
-              {categoriesArr?.map((category) => (
-                <option key={category?.id} value={category?.id}>
-                  {category?.type}
-                </option>
-              ))}
-            </select>
-          </label>
-          <textarea
-            placeholder="Write a description..."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="City"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="State"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Zip Code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-          />
-          <button type="submit">Update Restaurant</button>
-          <button
-            onClick={() => {
-              setCategory(rest?.categoryId);
-              setTitle(rest?.title);
-              setDescription(rest?.description);
-              setAddress(rest?.address);
-              setCity(rest?.city);
-              setState(rest?.state);
-              setZipCode(rest?.zipCode);
-              history.push(`/restaurants/${restId}`);
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={() => {
-              dispatch(removeRestaurant(rest));
-              history.push(`/restaurants`);
-            }}
-          >
-            Delete Restaurant
-          </button>
-        </form>
-      ) : (
-        <Redirect to={`/restaurants/${restId}`} />
-      )}
+          </select>
+        </label>
+        <textarea
+          placeholder="Write a description..."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Address"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="City"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="State"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Zip Code"
+          value={zipCode}
+          onChange={(e) => setZipCode(e.target.value)}
+        />
+        <button type="submit">Update Restaurant</button>
+        <button
+          onClick={() => {
+            setCategory(rest?.categoryId);
+            setTitle(rest?.title);
+            setDescription(rest?.description);
+            setAddress(rest?.address);
+            setCity(rest?.city);
+            setState(rest?.state);
+            setZipCode(rest?.zipCode);
+            history.push(`/restaurants/${restId}`);
+          }}
+        >
+          Cancel
+        </button>
+        <button
+          onClick={() => {
+            dispatch(removeRestaurant(rest));
+            history.push(`/restaurants`);
+          }}
+        >
+          Delete Restaurant
+        </button>
+      </form>
     </>
   );
 }
