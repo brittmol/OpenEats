@@ -10,18 +10,30 @@ export default function EditResForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { resId } = useParams();
+
   const sessionUser = useSelector((store) => store.session.user);
   const reservations = useSelector((store) => store.reservationReducer);
   const res = reservations[resId];
 
-  useEffect(() => {
-    dispatch(getReservations(sessionUser.id));
-  }, [dispatch, sessionUser]);
+  console.log("reserva", reservations);
+  console.log("res", res);
 
   const [time, setTime] = useState(new Date(res?.time) || null);
   const [numPpl, setNumPpl] = useState(res?.numPpl || null);
   const [specialReq, setSpecialReq] = useState(res?.specialReq || "");
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    dispatch(getReservations(sessionUser.id));
+  }, [dispatch, sessionUser]);
+
+  useEffect(() => {
+    if (res) {
+      setTime(new Date(res?.time));
+      setNumPpl(res?.numPpl);
+      setSpecialReq(res?.specialReq);
+    }
+  }, [res]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

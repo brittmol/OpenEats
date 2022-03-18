@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Redirect } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   updateRestaurant,
   removeRestaurant,
@@ -17,14 +17,6 @@ export default function EditRestaurantForm() {
   const restaurants = useSelector((store) => store.restaurantReducer);
   const rest = restaurants[restId];
 
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-
   const categories = useSelector((store) => store.categoryReducer);
   const categoriesArr = Object.values(categories);
 
@@ -36,6 +28,26 @@ export default function EditRestaurantForm() {
   const [state, setState] = useState(rest?.state || "");
   const [zipCode, setZipCode] = useState(rest?.zipCode || "");
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (rest) {
+      setCategory(rest?.categoryId);
+      setTitle(rest?.title);
+      setDescription(rest?.description);
+      setAddress(rest?.address);
+      setCity(rest?.city);
+      setState(rest?.state);
+      setZipCode(rest?.zipCode);
+    }
+  }, [rest]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
