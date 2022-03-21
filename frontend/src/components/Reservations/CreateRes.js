@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import LoginFormModal from "../LoginFormModal";
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import setHours from "date-fns/setHours";
@@ -12,9 +13,11 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (!sessionUser) history.push("/login");
-  });
+  console.log("user", sessionUser);
+
+  // useEffect(() => {
+  //   if (!sessionUser) history.push("/login");
+  // });
 
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
@@ -47,9 +50,16 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!sessionUser) history.push("/login");
+    // if (!sessionUser) {
+    //   return (
+    //     <LoginFormModal />
+    //   )
+    // }
+
     const payload = {
-      userId: sessionUser.id,
-      restaurantId: restaurant.id,
+      userId: sessionUser?.id,
+      restaurantId: restaurant?.id,
       time,
       numPpl,
       specialReq,
