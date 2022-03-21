@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
+import DemoUser from "../DemoUser/DemoUser";
 import "./SignupForm.css";
 
 function SignupFormPage() {
@@ -104,6 +105,7 @@ function SignupFormPage() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      <DemoUser />
     </>
   );
 }
