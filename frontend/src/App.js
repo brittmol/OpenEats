@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from "./components/LoginFormPage";
 // import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
@@ -14,6 +15,7 @@ import ConfirmRes from "./components/Reservations/ConfirmRes";
 import UserReservations from "./components/User/UserReservations";
 import UserProfile from "./components/User/UserProfile";
 import EditResForm from "./components/Reservations/EditRes";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -33,9 +35,9 @@ function App() {
       )}
       {isLoaded && (
         <Switch>
-          {/* <Route path="/login" >
+          <Route exact path="/login">
             <LoginFormPage />
-          </Route> */}
+          </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
@@ -75,6 +77,9 @@ function App() {
           {/* <Route exact path="/users/:userId/reviews">
             <h1>Component: UserReviews</h1>
           </Route> */}
+          <Route exact path="/pagenotfound">
+            <PageNotFound />
+          </Route>
         </Switch>
       )}
     </>

@@ -1,20 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams, useHistory, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 
 export default function SingleRestaurant() {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, [dispatch]);
+  const history = useHistory();
 
   const { restId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
   const restaurants = useSelector((store) => store.restaurantReducer);
   const rest = restaurants[restId];
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    dispatch(getRestaurants()).then(() => setLoaded(true));
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (loaded && !rest) history.push("/pagenotfound");
+  }, [loaded, rest]);
 
   return (
     <>

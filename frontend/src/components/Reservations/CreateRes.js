@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -11,6 +11,10 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function CreateResForm({ restaurant, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    if (!sessionUser) history.push("/login");
+  });
 
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
