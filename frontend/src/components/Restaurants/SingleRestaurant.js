@@ -19,9 +19,15 @@ export default function SingleRestaurant() {
     dispatch(getRestaurants()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    if (loaded && !rest) history.push("/pagenotfound");
-  }, [loaded, rest, history]);
+  //   useEffect(() => {
+  //     dispatch(load_pins()).then((res) => {
+  //         if (!res[pinId]) history.push('/not-found');
+  //     });
+  // }, [dispatch, pinId, history])
+
+  // useEffect(() => {
+  //   if (loaded && !rest) history.push("/restaurants");
+  // }, [loaded, rest, history]);
 
   return (
     <>

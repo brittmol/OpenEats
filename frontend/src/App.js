@@ -16,6 +16,7 @@ import UserReservations from "./components/User/UserReservations";
 import UserProfile from "./components/User/UserProfile";
 import EditResForm from "./components/Reservations/EditRes";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,42 +45,31 @@ function App() {
           <Route exact path="/restaurants">
             <AllRestaurants />
           </Route>
-          <Route exact path="/restaurants/new">
-            <CreateRestaurantForm />
-          </Route>
-          {/* <Route exact path='/restaurants/:search'>
-            <h1>Component: Searched List </h1>
-          </Route> */}
           <Route exact path="/restaurants/:restId">
             <SingleRestaurant />
           </Route>
-          <Route exact path="/restaurants/:restId/edit">
+          <ProtectedRoute exact path="/restaurants/:restId/edit">
             <EditRestaurantForm />
-          </Route>
-          {/* <Route exact path="/reservations/new">
-            <h1>Component: CreateReservation</h1>
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/restaurants/new">
+            <CreateRestaurantForm />
+          </ProtectedRoute>
+          {/* <Route exact path='/restaurants/:search'>
+            <h1>Component: Searched List </h1>
           </Route> */}
-          <Route exact path="/reservations/:resId/confirmation">
+          <ProtectedRoute exact path="/reservations/:resId/confirmation">
             <ConfirmRes />
-          </Route>
-          <Route exact path="/reservations/:resId/edit">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/reservations/:resId/edit">
             <EditResForm />
-          </Route>
-          <Route exact path="/users/:userId/profile">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/users/:userId/profile">
             <UserProfile />
-          </Route>
-          <Route exact path="/users/:userId/reservations">
+          </ProtectedRoute>
+          <ProtectedRoute exact path="/users/:userId/reservations">
             <UserReservations />
-          </Route>
-          {/* <Route exact path='/users/:userId/favorites'>
-            <h1>Component: UserFavorites</h1>
-          </Route> */}
-          {/* <Route exact path="/users/:userId/reviews">
-            <h1>Component: UserReviews</h1>
-          </Route> */}
-          <Route exact path="/pagenotfound">
-            <PageNotFound />
-          </Route>
+          </ProtectedRoute>
+          <Route component={PageNotFound} />
         </Switch>
       )}
     </>

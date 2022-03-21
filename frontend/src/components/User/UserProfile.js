@@ -8,10 +8,7 @@ export default function UserProfile() {
   const sessionUser = useSelector((store) => store.session.user);
 
   useEffect(() => {
-    if (!sessionUser) {
-      history.push("/login");
-    }
-    if (sessionUser && sessionUser?.id !== userId) {
+    if (sessionUser?.id !== userId) {
       history.push(`/users/${sessionUser?.id}/profile`);
     }
   }, [sessionUser, history, userId]);

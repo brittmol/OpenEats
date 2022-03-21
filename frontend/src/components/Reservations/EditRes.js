@@ -23,11 +23,10 @@ export default function EditResForm() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser.id)).then(() => setLoaded(true));
+    dispatch(getReservations(sessionUser?.id)).then(() => setLoaded(true));
   }, [dispatch, sessionUser]);
 
   useEffect(() => {
-    if (loaded && !res) history.push("/pagenotfound");
     if (loaded && res?.userId !== sessionUser?.id)
       history.push(`/users/${sessionUser?.id}/reservations`);
   }, [loaded, res, sessionUser, history]);

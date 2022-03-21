@@ -12,10 +12,7 @@ export default function UserReservations() {
   const resArray = Object.values(reservations);
 
   useEffect(() => {
-    if (!sessionUser) {
-      history.push("/login");
-    }
-    if (sessionUser && sessionUser?.id !== userId) {
+    if (sessionUser?.id !== userId) {
       history.push(`/users/${sessionUser?.id}/reservations`);
     }
   }, [sessionUser, history, userId]);
