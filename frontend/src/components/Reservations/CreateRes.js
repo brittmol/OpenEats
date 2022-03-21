@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
-
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import setHours from "date-fns/setHours";

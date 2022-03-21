@@ -15,9 +15,6 @@ export default function EditResForm() {
   const reservations = useSelector((store) => store.reservationReducer);
   const res = reservations[resId];
 
-  console.log("reserva", reservations);
-  console.log("res", res);
-
   const [loaded, setLoaded] = useState(false);
 
   const [time, setTime] = useState(null);
