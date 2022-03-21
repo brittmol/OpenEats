@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Modal } from "../../context/Modal";
-import LoginFormModal from "../LoginFormModal";
 import LoginForm from "../LoginFormModal/LoginForm";
 
 import DatePicker from "react-datepicker";
@@ -46,9 +45,17 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   const [errors, setErrors] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    if (sessionUser) {
+      setShowModal(false);
+      history.push(`/restaurants/${restaurant?.id}`);
+    }
+  }, [sessionUser]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // sessionUser ? setShowModal(true) : setShowModal(false);
     if (!sessionUser) {
       setShowModal(true);
     }
