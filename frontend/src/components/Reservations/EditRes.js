@@ -30,7 +30,7 @@ export default function EditResForm() {
     if (loaded && !res) history.push("/pagenotfound");
     if (loaded && res?.userId !== sessionUser?.id)
       history.push(`/users/${sessionUser?.id}/reservations`);
-  }, [loaded, res, sessionUser]);
+  }, [loaded, res, sessionUser, history]);
 
   useEffect(() => {
     if (res) {

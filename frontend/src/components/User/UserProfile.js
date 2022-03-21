@@ -14,12 +14,12 @@ export default function UserProfile() {
     if (sessionUser && sessionUser?.id !== userId) {
       history.push(`/users/${sessionUser?.id}/profile`);
     }
-  }, [sessionUser]);
+  }, [sessionUser, history, userId]);
 
   // userId is a string, sessionUser.id is a number, using == will see if they are equal
 
   // if user is not same user as userId, history.push
-  // if user is not logged in, redirect to signup
+  // if user is not logged in, redirect to login
   return (
     <>
       <h1>Account Details</h1>

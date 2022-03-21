@@ -21,7 +21,7 @@ export default function SingleRestaurant() {
 
   useEffect(() => {
     if (loaded && !rest) history.push("/pagenotfound");
-  }, [loaded, rest]);
+  }, [loaded, rest, history]);
 
   return (
     <>

@@ -18,7 +18,7 @@ export default function UserReservations() {
     if (sessionUser && sessionUser?.id !== userId) {
       history.push(`/users/${sessionUser?.id}/reservations`);
     }
-  }, [sessionUser]);
+  }, [sessionUser, history, userId]);
 
   useEffect(() => {
     dispatch(getReservations(sessionUser?.id));

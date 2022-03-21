@@ -48,7 +48,7 @@ export default function CreateResForm({ restaurant, sessionUser }) {
       setShowModal(false);
       history.push(`/restaurants/${restaurant?.id}`);
     }
-  }, [sessionUser]);
+  }, [sessionUser, history, restaurant]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

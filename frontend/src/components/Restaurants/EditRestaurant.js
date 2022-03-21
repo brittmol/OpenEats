@@ -43,7 +43,7 @@ export default function EditRestaurantForm() {
     if (loaded && !rest) history.push("/pagenotfound");
     if (loaded && rest?.ownerId !== sessionUser?.id)
       history.push(`/restaurants/${rest?.id}`);
-  }, [loaded, rest, sessionUser]);
+  }, [loaded, rest, sessionUser, history]);
 
   useEffect(() => {
     if (rest) {
