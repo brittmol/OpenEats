@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+import { Modal } from "../../context/Modal";
 import LoginFormModal from "../LoginFormModal";
+import LoginForm from "../LoginFormModal/LoginForm";
+
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import setHours from "date-fns/setHours";
@@ -12,12 +16,6 @@ import "react-datepicker/dist/react-datepicker.css";
 export default function CreateResForm({ restaurant, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  console.log("user", sessionUser);
-
-  // useEffect(() => {
-  //   if (!sessionUser) history.push("/login");
-  // });
 
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
@@ -46,16 +44,14 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   const [numPpl, setNumPpl] = useState(2);
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!sessionUser) history.push("/login");
-    // if (!sessionUser) {
-    //   return (
-    //     <LoginFormModal />
-    //   )
-    // }
+    if (!sessionUser) {
+      setShowModal(true);
+    }
 
     const payload = {
       userId: sessionUser?.id,
@@ -87,6 +83,13 @@ export default function CreateResForm({ restaurant, sessionUser }) {
             <li key={idx}>{error}</li>
           ))}
         </ul>
+        <div>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              <LoginForm />
+            </Modal>
+          )}
+        </div>
         <DatePicker
           placeholderText="Click to select a Date"
           selected={time}
