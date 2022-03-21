@@ -20,6 +20,8 @@ export default function EditRestaurantForm() {
   const categories = useSelector((store) => store.categoryReducer);
   const categoriesArr = Object.values(categories);
 
+  const [loaded, setLoaded] = useState(false);
+
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -30,12 +32,18 @@ export default function EditRestaurantForm() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getRestaurants());
+    dispatch(getRestaurants()).then(() => setLoaded(true));
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (loaded && !rest) history.push("/pagenotfound");
+    if (loaded && rest?.ownerId !== sessionUser?.id)
+      history.push(`/restaurants/${rest?.id}`);
+  }, [loaded, rest, sessionUser, history]);
 
   useEffect(() => {
     if (rest) {

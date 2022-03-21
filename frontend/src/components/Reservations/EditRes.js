@@ -15,8 +15,7 @@ export default function EditResForm() {
   const reservations = useSelector((store) => store.reservationReducer);
   const res = reservations[resId];
 
-  console.log("reserva", reservations);
-  console.log("res", res);
+  const [loaded, setLoaded] = useState(false);
 
   const [time, setTime] = useState(null);
   const [numPpl, setNumPpl] = useState(null);
@@ -24,8 +23,14 @@ export default function EditResForm() {
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser.id));
+    dispatch(getReservations(sessionUser.id)).then(() => setLoaded(true));
   }, [dispatch, sessionUser]);
+
+  useEffect(() => {
+    if (loaded && !res) history.push("/pagenotfound");
+    if (loaded && res?.userId !== sessionUser?.id)
+      history.push(`/users/${sessionUser?.id}/reservations`);
+  }, [loaded, res, sessionUser, history]);
 
   useEffect(() => {
     if (res) {

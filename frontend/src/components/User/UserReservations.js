@@ -1,16 +1,24 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { useParams, useHistory, Redirect, Link } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { getReservations, removeRes } from "../../store/reservations";
 
 export default function UserReservations() {
   const dispatch = useDispatch();
   const history = useHistory();
-
   const { userId } = useParams();
   const sessionUser = useSelector((store) => store.session.user);
   const reservations = useSelector((store) => store.reservationReducer);
   const resArray = Object.values(reservations);
+
+  useEffect(() => {
+    if (!sessionUser) {
+      history.push("/login");
+    }
+    if (sessionUser && sessionUser?.id !== userId) {
+      history.push(`/users/${sessionUser?.id}/reservations`);
+    }
+  }, [sessionUser, history, userId]);
 
   useEffect(() => {
     dispatch(getReservations(sessionUser?.id));

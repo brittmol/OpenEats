@@ -11,7 +11,7 @@ export default function ConfirmRes() {
   const res = reservations[resId];
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser.id));
+    dispatch(getReservations(sessionUser?.id));
   }, [dispatch, sessionUser]);
 
   const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
