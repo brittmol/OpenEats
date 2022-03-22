@@ -17,6 +17,7 @@ import UserProfile from "./components/User/UserProfile";
 import EditResForm from "./components/Reservations/EditRes";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+import OneRestaurant from "./components/Restaurants/OneRestaurant";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,7 +47,8 @@ function App() {
             <AllRestaurants />
           </Route>
           <Route exact path="/restaurants/:restId">
-            <SingleRestaurant />
+            {/* <SingleRestaurant /> */}
+            <OneRestaurant />
           </Route>
           <ProtectedRoute exact path="/restaurants/:restId/edit">
             <EditRestaurantForm />
