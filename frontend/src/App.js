@@ -8,7 +8,6 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import { Modal } from "./context/Modal";
 import AllRestaurants from "./components/Restaurants/AllRestaurants";
-import SingleRestaurant from "./components/Restaurants/SingleRestaurant";
 import CreateRestaurantForm from "./components/Restaurants/CreateRestaurantForm";
 import EditRestaurantForm from "./components/Restaurants/EditRestaurant";
 import ConfirmRes from "./components/Reservations/ConfirmRes";
@@ -47,7 +46,6 @@ function App() {
             <AllRestaurants />
           </Route>
           <Route exact path="/restaurants/:restId">
-            {/* <SingleRestaurant /> */}
             <OneRestaurant />
           </Route>
           <ProtectedRoute exact path="/restaurants/:restId/edit">

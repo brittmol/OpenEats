@@ -5,14 +5,23 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
+import { getRestaurants } from "../../store/restaurants";
+
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setSeconds from "date-fns/setSeconds";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function CreateResForm({ restaurant, sessionUser }) {
+export default function CreateResForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, [dispatch]);
+
+  console.log("CreateRes sessionUser", sessionUser);
+  console.log("CreateRes restId", restId);
 
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
@@ -46,9 +55,9 @@ export default function CreateResForm({ restaurant, sessionUser }) {
   useEffect(() => {
     if (sessionUser) {
       setShowModal(false);
-      history.push(`/restaurants/${restaurant?.id}`);
+      history.push(`/restaurants/${restId}`);
     }
-  }, [sessionUser, history, restaurant]);
+  }, [sessionUser, history, restId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,7 +69,7 @@ export default function CreateResForm({ restaurant, sessionUser }) {
 
     const payload = {
       userId: sessionUser?.id,
-      restaurantId: restaurant?.id,
+      restaurantId: restId,
       time,
       numPpl,
       specialReq,

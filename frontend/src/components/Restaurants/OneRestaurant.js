@@ -31,7 +31,7 @@ export default function OneRestaurant() {
       ) : null}
       <div>{rest?.Category?.type}</div>
       <div>{rest?.description}</div>
-      {/* <CreateResForm restaurant={rest} sessionUser={sessionUser} /> */}
+      <CreateResForm restId={restId} sessionUser={sessionUser} />
       {/* <div>Reviews:</div> */}
     </>
   );
