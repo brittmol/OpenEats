@@ -1,0 +1,41 @@
+.home-search-res {
+  background: linear-gradient(
+    0.647turn,
+    rgba(26, 10, 71, 0.8),
+    rgba(13, 27, 69, 0.6) 0.01%,
+    rgba(13, 27, 69, 0.8) 51.04%,
+    #0d1b45 99.1%
+  );
+  width: fit-content;
+  padding: 40px;
+}
+
+.home-search-res h1 {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.all-rest-cards {
+  display: flex;
+  /* flex-direction: row; */
+}
+
+.rest-card {
+  border: rgb(201, 199, 199) solid 1px;
+  border-radius: 3px;
+  /* width: fit-content; */
+  width: 200px;
+  margin: 10px;
+}
+
+.rest-card img {
+  width: 100%;
+}
+
+.rest-card-text {
+  padding: 10px;
+}
+
+.red {
+  background-color: #da3743;
+}

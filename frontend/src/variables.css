@@ -1,0 +1,22 @@
+:root {
+  --blue-primary: #0095f6;
+  --blue-light: #c0dffd;
+
+  --gray-primary: #262626;
+  --gray-secondary: gray;
+  --color-placeholder: rgb(167, 167, 167);
+
+  --red: #da3743;
+
+  --color-error: red;
+
+  --color-white: white;
+
+  /* BORDER */
+  --border-light: 1px solid lightgray;
+  --border-dark: 1px solid gray;
+
+  /* FONT */
+
+  --font: Arial, Helvetica, sans-serif;
+}
