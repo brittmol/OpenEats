@@ -7,6 +7,7 @@ import {
   getRestaurants,
 } from "../../store/restaurants";
 import { getCategories } from "../../store/categories";
+import "./Restaurants.css";
 
 export default function EditRestaurantForm() {
   const dispatch = useDispatch();

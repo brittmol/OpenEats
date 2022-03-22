@@ -33,7 +33,6 @@ export default function AllRestaurants() {
                 <div>
                   <img
                     src={rest?.image}
-                    // style={{ height: "100px" }}
                     alt="Not Found"
                     onError={(e) =>
                       (e.target.src =

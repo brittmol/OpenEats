@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
+import "./Restaurants.css";
+import StarRating from "../Reviews/StarRating";
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
@@ -22,17 +24,10 @@ export default function OneRestaurant() {
       {loaded && !rest ? (
         <Redirect to={`/restaurants/${restId}/page-not-found`} />
       ) : (
-        <>
-          <h1>{rest?.title}</h1>
-          {sessionUser && sessionUser?.id === rest?.User?.id ? (
-            <button>
-              <Link to={`/restaurants/${rest?.id}/edit`}>Want to update?</Link>
-            </button>
-          ) : null}
+        <div className="one-rest-page">
           <div>
             <img
               src={rest?.image}
-              style={{ height: "250px" }}
               alt="Not Found"
               onError={(e) =>
                 (e.target.src =
@@ -41,11 +36,29 @@ export default function OneRestaurant() {
               // alt="https://wallpaperaccess.com/full/1322048.jpg"
             />
           </div>
-          <div>{rest?.Category?.type}</div>
-          <div>{rest?.description}</div>
-          <CreateResForm restId={restId} sessionUser={sessionUser} />
-          {/* <div>Reviews:</div> */}
-        </>
+          <div className="info">
+            <div className="left-panel">
+              <h1>{rest?.title}</h1>
+              {sessionUser && sessionUser?.id === rest?.User?.id ? (
+                <button>
+                  <Link to={`/restaurants/${rest?.id}/edit`}>
+                    Want to update?
+                  </Link>
+                </button>
+              ) : null}
+              <div>{rest?.Category?.type}</div>
+              <StarRating />
+              <div>{rest?.description}</div>
+              {/* <div>Reviews:</div> */}
+            </div>
+            <div className="right-panel">
+              <CreateResForm restId={restId} sessionUser={sessionUser} />
+              <div className="address">
+                {rest?.address} {rest?.city}, {rest?.state} {rest?.zipCode}
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
