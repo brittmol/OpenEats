@@ -6,8 +6,11 @@
     rgba(13, 27, 69, 0.8) 51.04%,
     #0d1b45 99.1%
   );
-  width: fit-content;
+  width: 100%;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home-search-res h1 {

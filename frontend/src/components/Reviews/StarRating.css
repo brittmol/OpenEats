@@ -1,0 +1,13 @@
+#starRatingBtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #da3743;
+}
+.off {
+  /* color: #ccc; */
+  color: red;
+}

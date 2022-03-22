@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
+import StarRating from "../Reviews/StarRating";
 
 export default function AllRestaurants() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export default function AllRestaurants() {
         <div className="search-bar">
           <input placeholder="*** This will be where you can search for reservation ***" />
           <input placeholder="Location, Restaurant, or Cuisine" />
-          <button className='red'>Let's go</button>
+          <button className="red">Let's go</button>
         </div>
       </div>
       <div className="all-rest-cards">
@@ -43,6 +44,7 @@ export default function AllRestaurants() {
                 </div>
                 <div className="rest-card-text">
                   <div>{rest?.title}</div>
+                  <StarRating rating={rest?.ratingOverall} />
                   <div>{rest?.Category?.type}</div>
                   <div>
                     {rest?.city}, {rest?.state}
