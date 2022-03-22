@@ -51,7 +51,7 @@ function App() {
           <ProtectedRoute exact path="/restaurants/:restId/edit">
             <EditRestaurantForm />
           </ProtectedRoute>
-          <ProtectedRoute exact path="/restaurants/new">
+          <ProtectedRoute exact path="/create-restaurant">
             <CreateRestaurantForm />
           </ProtectedRoute>
           {/* <Route exact path='/restaurants/:search'>

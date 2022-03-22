@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 
 export default function UserProfile() {
   const history = useHistory();
@@ -19,6 +19,11 @@ export default function UserProfile() {
   // if user is not logged in, redirect to login
   return (
     <>
+      <div>
+        <Link to="/create-restaurant">
+          Want to put your restaurant on OpenEats?
+        </Link>
+      </div>
       <h1>Account Details</h1>
       <div>
         {sessionUser?.firstName} {sessionUser?.lastName}
