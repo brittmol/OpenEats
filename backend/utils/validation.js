@@ -59,7 +59,9 @@ const validateRestaurant = [
     .withMessage("Please provide a title for your Restaurant."),
   check("image")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide an image for your Restaurant."),
+    .withMessage("Please provide an image for your Restaurant.")
+    .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|svg)$/g)
+    .withMessage("Please provide a valid url for your image."),
   check("description")
     .exists({ checkFalsy: true })
     .withMessage("Please provide some information about your Restaurant.")
