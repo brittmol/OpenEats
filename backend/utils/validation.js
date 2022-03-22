@@ -57,6 +57,17 @@ const validateRestaurant = [
   check("title")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a title for your Restaurant."),
+  check("image")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide an image for your Restaurant."),
+  check("description")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide some information about your Restaurant.")
+    .isLength({ max: 250 })
+    .withMessage("Text cannot exceed 250 characters."),
+  check("categoryId")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a Cuisine type for your Restaurant."),
   check("address")
     .exists({ checkFalsy: true })
     .withMessage("Please provide an address for your spot."),
@@ -104,9 +115,6 @@ const validateReservation = [
     .withMessage("Please provide a valid date and time for your reservation."),
   check("numPpl")
     // .exists({ checkFalsy: true })
-    // .withMessage(
-    //   "Please provide between 1 and 10 people for your reservation."
-    // )
     .isNumeric()
     .withMessage(
       "Please provide a valid number of people for your reservation."

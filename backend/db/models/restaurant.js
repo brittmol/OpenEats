@@ -39,6 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       ownerId: DataTypes.INTEGER,
       categoryId: DataTypes.INTEGER,
       title: DataTypes.STRING,
+      image: DataTypes.STRING,
       description: DataTypes.TEXT,
       address: DataTypes.STRING,
       state: DataTypes.STRING,

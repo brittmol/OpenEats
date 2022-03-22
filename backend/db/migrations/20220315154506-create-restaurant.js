@@ -14,6 +14,7 @@ module.exports = {
         references: { model: "Users" },
       },
       categoryId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Categories" },
       },
@@ -21,19 +22,28 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      image: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       description: {
+        allowNull: false,
         type: Sequelize.TEXT,
       },
       address: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       state: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       city: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       zipCode: {
+        allowNull: false,
         type: Sequelize.INTEGER,
       },
       ratingOverall: {

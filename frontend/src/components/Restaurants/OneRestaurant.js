@@ -29,6 +29,14 @@ export default function OneRestaurant() {
               <Link to={`/restaurants/${rest?.id}/edit`}>Want to update?</Link>
             </button>
           ) : null}
+          <div>
+            <img
+              src={rest?.image}
+              style={{ height: "250px" }}
+              alt="Not Found"
+              onerror='this.src="https://wallpaperaccess.com/full/1322048.jpg"'
+            />
+          </div>
           <div>{rest?.Category?.type}</div>
           <div>{rest?.description}</div>
           <CreateResForm restId={restId} sessionUser={sessionUser} />

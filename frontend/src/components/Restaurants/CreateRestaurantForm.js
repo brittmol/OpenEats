@@ -18,6 +18,7 @@ export default function CreateRestaurantForm() {
 
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -32,6 +33,7 @@ export default function CreateRestaurantForm() {
       ownerId: sessionUser.id,
       categoryId: category,
       title,
+      image,
       description,
       address,
       city,
@@ -78,6 +80,12 @@ export default function CreateRestaurantForm() {
             ))}
           </select>
         </label>
+        <input
+          type="text"
+          placeholder="Image URL"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+        />
         <textarea
           placeholder="Write a description..."
           value={description}
