@@ -70,7 +70,7 @@ function App() {
           <ProtectedRoute exact path="/users/:userId/reservations">
             <UserReservations />
           </ProtectedRoute>
-          <Route excat path="/">
+          <Route exact path="/">
             <SplashPage />
           </Route>
           <Route component={PageNotFound} />
