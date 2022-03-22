@@ -34,7 +34,11 @@ export default function OneRestaurant() {
               src={rest?.image}
               style={{ height: "250px" }}
               alt="Not Found"
-              onerror='this.src="https://wallpaperaccess.com/full/1322048.jpg"'
+              onError={(e) =>
+                (e.target.src =
+                  "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg")
+              }
+              // alt="https://wallpaperaccess.com/full/1322048.jpg"
             />
           </div>
           <div>{rest?.Category?.type}</div>

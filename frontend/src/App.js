@@ -17,6 +17,7 @@ import EditResForm from "./components/Reservations/EditRes";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OneRestaurant from "./components/Restaurants/OneRestaurant";
+import SplashPage from "./components/SplashPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -69,6 +70,9 @@ function App() {
           <ProtectedRoute exact path="/users/:userId/reservations">
             <UserReservations />
           </ProtectedRoute>
+          <Route excat path="/">
+            <SplashPage />
+          </Route>
           <Route component={PageNotFound} />
         </Switch>
       )}
