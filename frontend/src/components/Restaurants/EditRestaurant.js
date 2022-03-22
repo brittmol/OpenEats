@@ -40,7 +40,6 @@ export default function EditRestaurantForm() {
   }, [dispatch]);
 
   useEffect(() => {
-    // if (loaded && !rest) history.push("/restaurants");
     if (loaded && rest?.ownerId !== sessionUser?.id)
       history.push(`/restaurants/${rest?.id}`);
   }, [loaded, rest, sessionUser, history]);

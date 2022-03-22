@@ -109,8 +109,6 @@ export default function reservationReducer(state = {}, action) {
     }
     case DELETE_RES: {
       newState = { ...state };
-      console.log("newState", newState);
-      console.log("action.res", action.res);
       delete newState[action.res.id];
       return newState;
     }

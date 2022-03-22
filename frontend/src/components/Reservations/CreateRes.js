@@ -20,9 +20,6 @@ export default function CreateResForm({ restId, sessionUser }) {
     dispatch(getRestaurants());
   }, [dispatch]);
 
-  console.log("CreateRes sessionUser", sessionUser);
-  console.log("CreateRes restId", restId);
-
   Date.prototype.addHours = function (h) {
     this.setTime(this.getTime() + h * 60 * 60 * 1000);
     return this;

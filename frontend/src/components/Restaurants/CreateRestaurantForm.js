@@ -10,10 +10,6 @@ export default function CreateRestaurantForm() {
   const sessionUser = useSelector((store) => store.session.user);
 
   useEffect(() => {
-    if (!sessionUser) history.push("/login");
-  });
-
-  useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
 
