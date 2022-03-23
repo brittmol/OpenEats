@@ -17,6 +17,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OneRestaurant from "./components/Restaurants/OneRestaurant";
 import SplashPage from "./components/SplashPage";
+import Footer from "./components/Footer";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -75,6 +76,7 @@ function App() {
           <Route component={PageNotFound} />
         </Switch>
       )}
+      {isLoaded && <Footer />}
     </>
   );
 }
