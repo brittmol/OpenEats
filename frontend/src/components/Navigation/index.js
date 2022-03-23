@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import LoginFormModal from "../LoginFormModal";
+import logo from "../../images/open_table_icon.png";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -22,14 +23,17 @@ function Navigation({ isLoaded }) {
 
   return (
     <nav>
-      <ul>
-        <li>
+      <div className="nav-bar">
+        <div className="left-bar">
           <NavLink exact to="/restaurants">
-            Home
+            <div className="logo">
+              <img src={logo} alt="logo" />
+              <p>OpenEats</p>
+            </div>
           </NavLink>
-          {isLoaded && sessionLinks}
-        </li>
-      </ul>
+        </div>
+        <div className="right-bar">{isLoaded && sessionLinks}</div>
+      </div>
     </nav>
   );
 }

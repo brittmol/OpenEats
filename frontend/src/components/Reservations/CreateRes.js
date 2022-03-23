@@ -49,9 +49,13 @@ export default function CreateResForm({ restId, sessionUser }) {
   const [errors, setErrors] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+  // console.log("errors", errors);
+
   useEffect(() => {
     if (sessionUser) {
       setShowModal(false);
+      const newErrors = errors.filter((e) => e !== "Unauthorized");
+      setErrors(newErrors);
       history.push(`/restaurants/${restId}`);
     }
   }, [sessionUser, history, restId]);

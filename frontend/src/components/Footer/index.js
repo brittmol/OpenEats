@@ -11,11 +11,11 @@ export default function Footer() {
         }}
         target="_blank"
       >
-        <i class="fa-brands fa-linkedin"> linkedin&nbsp;</i>
+        <i className="fa-brands fa-linkedin"> linkedin&nbsp;</i>
       </Link>
       |
       <Link to={{ pathname: "https://github.com/brittmol" }} target="_blank">
-        &nbsp;<i class="fa-brands fa-github"> github&nbsp;</i>
+        &nbsp;<i className="fa-brands fa-github"> github&nbsp;</i>
       </Link>
       |
     </footer>
