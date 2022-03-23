@@ -1,4 +1,5 @@
 const { validationResult, check } = require("express-validator");
+const { User } = require("../db/models");
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
@@ -29,16 +30,44 @@ const validateSignup = [
   check("email")
     .exists({ checkFalsy: true })
     .isEmail()
-    .withMessage("Please provide a valid email."),
+    .withMessage("Please provide a valid email")
+    .custom((value) => {
+      return User.findOne({ where: { email: value } }).then((user) => {
+        if (user) {
+          return Promise.reject(
+            "The provided email address is already in use by another account"
+          );
+        }
+      });
+    }),
   check("username")
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
-    .withMessage("Please provide a username with at least 4 characters."),
+    .withMessage("Please provide a username with at least 4 characters.")
+    .custom((value) => {
+      return User.findOne({ where: { username: value } }).then((user) => {
+        if (user) {
+          return Promise.reject(
+            "The provided username is already in use by another account"
+          );
+        }
+      });
+    }),
   check("username").not().isEmail().withMessage("Username cannot be an email."),
   check("password")
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage("Password must be 6 characters or more."),
+  // .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
+  // .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")'),
+  // check('confirmPassword')
+  //   .exists({ checkFalsy: true })
+  //   .custom((value, { req }) => {
+  //     if (value !== req.body.password) {
+  //       throw new Error('Confirmed password does not match password');
+  //     }
+  //     return true;
+  //   }),
   handleValidationErrors,
 ];
 
