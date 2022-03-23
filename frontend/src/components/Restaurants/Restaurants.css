@@ -40,6 +40,12 @@
   padding: 10px;
 }
 
+.title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .red {
   background-color: #da3743;
 }

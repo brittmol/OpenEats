@@ -42,7 +42,7 @@ export default function AllRestaurants() {
                   />
                 </div>
                 <div className="rest-card-text">
-                  <div>{rest?.title}</div>
+                  <div className="title">{rest?.title}</div>
                   <StarRating rating={rest?.ratingOverall} />
                   <div>{rest?.Category?.type}</div>
                   <div>
