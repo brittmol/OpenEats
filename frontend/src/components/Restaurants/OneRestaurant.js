@@ -40,7 +40,7 @@ export default function OneRestaurant() {
             <div className="left-panel">
               <h1>{rest?.title}</h1>
               {sessionUser && sessionUser?.id === rest?.User?.id ? (
-                <button>
+                <button className="red-btn">
                   <Link to={`/restaurants/${rest?.id}/edit`}>
                     Want to update?
                   </Link>

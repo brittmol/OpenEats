@@ -143,7 +143,9 @@ export default function CreateResForm({ restId, sessionUser }) {
           value={specialReq}
           onChange={(e) => setSpecialReq(e.target.value)}
         />
-        <button type="submit">Find a Table</button>
+        <button type="submit" className="red-btn">
+          Find a Table
+        </button>
       </form>
     </>
   );

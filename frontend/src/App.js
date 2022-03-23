@@ -35,47 +35,49 @@ function App() {
           <h1>Hello I am a Modal</h1>
         </Modal>
       )} */}
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route exact path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route exact path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/restaurants">
-            <AllRestaurants />
-          </Route>
-          <Route exact path="/restaurants/:restId">
-            <OneRestaurant />
-          </Route>
-          <ProtectedRoute exact path="/restaurants/:restId/edit">
-            <EditRestaurantForm />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/create-restaurant">
-            <CreateRestaurantForm />
-          </ProtectedRoute>
-          {/* <Route exact path='/restaurants/:search'>
+      <main id="page-container">
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <SplashPage />
+            </Route>
+            <Route exact path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route exact path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/restaurants">
+              <AllRestaurants />
+            </Route>
+            <Route exact path="/restaurants/:restId">
+              <OneRestaurant />
+            </Route>
+            <ProtectedRoute exact path="/restaurants/:restId/edit">
+              <EditRestaurantForm />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/create-restaurant">
+              <CreateRestaurantForm />
+            </ProtectedRoute>
+            {/* <Route exact path='/restaurants/:search'>
             <h1>Component: Searched List </h1>
           </Route> */}
-          <ProtectedRoute exact path="/reservations/:resId/confirmation">
-            <ConfirmRes />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/reservations/:resId/edit">
-            <EditResForm />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/users/:userId/profile">
-            <UserProfile />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/users/:userId/reservations">
-            <UserReservations />
-          </ProtectedRoute>
-          <Route component={PageNotFound} />
-        </Switch>
-      )}
+            <ProtectedRoute exact path="/reservations/:resId/confirmation">
+              <ConfirmRes />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/reservations/:resId/edit">
+              <EditResForm />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/users/:userId/profile">
+              <UserProfile />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/users/:userId/reservations">
+              <UserReservations />
+            </ProtectedRoute>
+            <Route component={PageNotFound} />
+          </Switch>
+        )}
+      </main>
       {isLoaded && <Footer />}
     </>
   );

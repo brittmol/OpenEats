@@ -6,7 +6,6 @@
     rgba(13, 27, 69, 0.8) 51.04%,
     #0d1b45 99.1%
   );
-  width: 100%;
   padding: 40px;
   display: flex;
   flex-direction: column;
@@ -14,8 +13,13 @@
 }
 
 .home-search-res h1 {
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.home-search-res p {
+  color: #fff;
+  font-size: 14px;
+  font-style: italic;
 }
 
 .all-rest-cards {
@@ -51,15 +55,15 @@
 }
 
 /* OneRestaurant */
-/* .one-rest-page {
+.one-rest-page {
   position: relative;
-} */
+}
 
 .one-rest-page img {
   object-fit: cover;
   width: 100%;
   height: 400px;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .one-rest-page .info {
@@ -67,10 +71,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* background-color: aqua; */
-  position: absolute;
-  z-index: 2;
-  margin-top: 350px;
+  height: 100%;
+  padding-bottom: 30px;
+  margin-top: -50px;
 }
 
 .left-panel,

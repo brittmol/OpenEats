@@ -20,9 +20,13 @@ export default function AllRestaurants() {
       <div className="home-search-res">
         <h1>Find your table for any occasion</h1>
         <div className="search-bar">
-          <input placeholder="*** This will be where you can search for reservation ***" />
+          <p>
+            Reserve a table at one of our restaurants or add a restaurant on our
+            site!
+          </p>
+          {/* <input placeholder="*** This will be where you can search for reservation ***" />
           <input placeholder="Location, Restaurant, or Cuisine" />
-          <button className="red">Let's go</button>
+          <button className="red">Let's go</button> */}
         </div>
       </div>
       <div className="all-rest-cards">
