@@ -41,7 +41,7 @@ export default function OneRestaurant() {
               <div className="panel-header">Overview of Restaurant Details</div>
               <h1 className="title">{rest?.title}</h1>
               {sessionUser && sessionUser?.id === rest?.User?.id ? (
-                <button className="red-btn" style={{"marginBottom": "20px"}}>
+                <button className="red-btn" style={{ marginBottom: "20px" }}>
                   <Link to={`/restaurants/${rest?.id}/edit`}>
                     Want to update?
                   </Link>
