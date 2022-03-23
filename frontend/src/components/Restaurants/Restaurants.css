@@ -23,16 +23,25 @@
 }
 
 .all-rest-cards {
+  margin: 0px 150px;
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
+  overflow: auto;
 }
 
 .rest-card {
-  border: rgb(201, 199, 199) solid 1px;
-  border-radius: 3px;
+  border: #d8d9db solid 1px;
+  border-radius: 4px;
+  box-sizing: border-box;
   /* width: fit-content; */
   width: 200px;
   margin: 10px;
+}
+
+.rest-card:hover {
+  transition: all 0.3s;
+  transform: translateY(-7px);
+  box-shadow: 0px 5px 5px 1px #dad8d8;
 }
 
 .rest-card img {
@@ -44,7 +53,7 @@
   padding: 10px;
 }
 
-.title {
+.rest-card-text .title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -55,14 +64,14 @@
 }
 
 /* OneRestaurant */
-.one-rest-page {
+/* .one-rest-page {
   position: relative;
-}
+} */
 
 .one-rest-page img {
   object-fit: cover;
   width: 100%;
-  height: 400px;
+  height: 350px;
   /* position: absolute; */
 }
 
@@ -78,17 +87,44 @@
 
 .left-panel,
 .right-panel {
-  /* background-color: white; */
-  padding: 0px 20px;
-  margin-right: 10px;
+  background-color: white;
+  padding: 10px 20px;
 }
 
 .left-panel {
-  background-color: pink;
+  /* background-color: pink; */
   width: 500px;
+  margin-right: 15px;
 }
 
 .right-panel {
-  background-color: rgb(255, 202, 104);
+  /* background-color: rgb(255, 202, 104); */
   width: 300px;
+  margin-left: 15px;
+  box-sizing: border-box;
+  box-shadow: 0px 5px 5px 1px #dad8d8;
+  height: fit-content;
+}
+
+.panel-header {
+  height: 35px;
+  border-bottom: rgb(201, 199, 199) solid 1px;
+  /* border-bottom: rgb(51, 49, 49) solid 1px; */
+  /* background-color: aqua; */
+}
+
+.info .title {
+  font-size: 40px;
+  font-weight: 700;
+  padding-bottom: 20px;
+  border-bottom: rgb(201, 199, 199) solid 1px;
+}
+
+.info .text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.info .text .div {
+  padding: 50px 10px;
 }

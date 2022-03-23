@@ -89,6 +89,7 @@ export default function CreateResForm({ restId, sessionUser }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div className="panel-header">Make a Reservation</div>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -138,11 +139,13 @@ export default function CreateResForm({ restId, sessionUser }) {
             onChange={(e) => setNumPpl(e.target.value)}
           />
         </div>
-        <textarea
-          placeholder="Add a special request (optional)"
-          value={specialReq}
-          onChange={(e) => setSpecialReq(e.target.value)}
-        />
+        <div>
+          <textarea
+            placeholder="Add a special request (optional)"
+            value={specialReq}
+            onChange={(e) => setSpecialReq(e.target.value)}
+          />
+        </div>
         <button type="submit" className="red-btn">
           Find a Table
         </button>

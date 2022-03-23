@@ -38,18 +38,21 @@ export default function OneRestaurant() {
           </div>
           <div className="info">
             <div className="left-panel">
-              <h1>{rest?.title}</h1>
+              <div className="panel-header">Overview of Restaurant Details</div>
+              <h1 className="title">{rest?.title}</h1>
               {sessionUser && sessionUser?.id === rest?.User?.id ? (
-                <button className="red-btn">
+                <button className="red-btn" style={{"marginBottom": "20px"}}>
                   <Link to={`/restaurants/${rest?.id}/edit`}>
                     Want to update?
                   </Link>
                 </button>
               ) : null}
-              <div>{rest?.Category?.type}</div>
-              <StarRating />
-              <div>{rest?.description}</div>
-              {/* <div>Reviews:</div> */}
+              <div className="text">
+                <div>{rest?.Category?.type}</div>
+                <StarRating />
+                <div>{rest?.description}</div>
+                {/* <div>Reviews:</div> */}
+              </div>
             </div>
             <div className="right-panel">
               <CreateResForm restId={restId} sessionUser={sessionUser} />
