@@ -55,7 +55,7 @@ export default function CreateRestaurantForm() {
   return (
     <>
       <h1>Create Restaurant</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="rest-form">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -68,7 +68,7 @@ export default function CreateRestaurantForm() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <label>
-          Cuisine:
+          Cuisine:&emsp;
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}

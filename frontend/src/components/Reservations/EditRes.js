@@ -65,7 +65,7 @@ export default function EditResForm() {
   return (
     <>
       <h1>Edit your Reservation</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="rsv-form">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -108,11 +108,13 @@ export default function EditResForm() {
             onChange={(e) => setNumPpl(e.target.value)}
           />
         </div>
-        <textarea
-          placeholder="Add a special request (optional)"
-          value={specialReq}
-          onChange={(e) => setSpecialReq(e.target.value)}
-        />
+        <div>
+          <textarea
+            placeholder="Add a special request (optional)"
+            value={specialReq}
+            onChange={(e) => setSpecialReq(e.target.value)}
+          />
+        </div>
         <button type="submit">Save Reservation</button>
       </form>
     </>

@@ -92,7 +92,7 @@ export default function CreateResForm({ restId, sessionUser }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="rsv-form">
         <div className="panel-header">Make a Reservation</div>
         <ul>
           {errors.map((error, idx) => (

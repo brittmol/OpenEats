@@ -14,23 +14,9 @@ body {
   background-color: #fff;
 }
 
-a {
-  text-decoration: none;
-}
-
-.red-btn a {
-  color: #fff;
-}
-
-.red-btn {
-  background-color: #da3743;
-  border: #da3743 solid 1px;
-  border-radius: 3px;
-  color: #fff;
-}
-
 main {
   height: auto;
+  padding-bottom: 50px;
 }
 
 footer {
@@ -55,4 +41,24 @@ footer > a {
 
 footer > a:hover {
   color: #da3743;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.red-btn a {
+  color: #fff;
+}
+
+.red-btn,
+form > button {
+  background-color: #da3743;
+  border: #da3743 solid 1px;
+  border-radius: 3px;
+  color: #fff;
 }
