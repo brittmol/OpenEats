@@ -49,36 +49,27 @@
 <h2> User Authentication </h2>
 User can either log in with an exisiting account or sign up to create a new account. Alternatively if the user doesn't want to make an account, they can log using the demo user link.
 <br>
-[ insert picture ]
+<img src="https://i.imgur.com/mL738KZ.png" />
 
 <h2> All Restaurants Page </h2> 
 This is the landing page, where users can browse a variety of restaurants.
 <br>
-[ insert picture ]
+<img src="https://i.imgur.com/QIBxD46.png" />
 
 <h2> Specific Restaurant Page </h2> 
-Users can check out a specific restaurant and it's details. On this page, a user can also make a reservation for that reservation.
+Users can check out a specific restaurant and it's details. On this page, a user can also make a reservation for that restaurant. A logged in user can make a reservation with specifications for the day, time, number of people, and an option special request. Once the reservation is completed, they are redirected to a confirmation page.
 <br>
-[ insert picture ]
-
-<h2> Making a Reservation </h2> 
-A logged in user can make a reservation at a restaurant with specifications for the day, time, number of people, and an option special request. Once the reservation is completed, they are redirected to a confirmation page.
-<br>
-[ insert picture ]
-
-<h2> User Profile </h2> 
-Logged in users can view their account details.
-<br>
-[ insert picture ]
+<img src="https://i.imgur.com/F8jpjQD.png" />
+<img src="https://i.imgur.com/VptJMrV.png" />
 
 <h2> User Reservations </h2> 
 Logged in users can view all their reservations, as well as modify or delete those reservations.
 <br>
-[ insert picture ]
+<img src="https://i.imgur.com/lBQncUt.png" />
+<img src="https://i.imgur.com/3rcGlca.png" />
 
-<h2> Editing & Deleting a Restaurant </h2> 
+<h2> Creating, Editing, & Deleting a Restaurant </h2> 
 Logged in users who are hosting a restaurant have the option to update their restaurant details. They can also delete the entire restaurant, which will delete all reservations associated with the restaurant as well.
 <br>
-[ insert picture ]
-
+<img src="https://i.imgur.com/LYKMiML.png" />
 
