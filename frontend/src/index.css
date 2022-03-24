@@ -86,6 +86,7 @@ form > button {
   border: #da3743 solid 1px;
   border-radius: 3px;
   color: #fff;
+  padding: 5px 7px;
 }
 
 .red-font-btn {
@@ -94,6 +95,15 @@ form > button {
   border-radius: 3px;
   color: #da3743;
   font-weight: bolder;
+}
+
+.red-btn:hover {
+  background-color: #ce7b81;
+  border: #ce7b81 solid 1px;
+}
+
+.red-font-btn:hover {
+  color: #8a171e;
 }
 
 /* page not found */

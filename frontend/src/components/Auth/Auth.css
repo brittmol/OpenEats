@@ -22,6 +22,10 @@
   padding: 5px 10px;
 }
 
+.modal-form-submit-btn:hover {
+  background-color: #ce7b81;
+}
+
 .modal-form-title {
   display: flex;
   justify-content: center;
