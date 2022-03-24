@@ -54,8 +54,8 @@ export default function CreateRestaurantForm() {
 
   return (
     <>
-      <h1>Create Restaurant</h1>
       <form onSubmit={handleSubmit} className="rest-form">
+        <h1>Create Restaurant</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx} className="errors">

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
-import "./User.css"
+import "./User.css";
 
 export default function UserProfile() {
   const history = useHistory();
@@ -19,18 +19,23 @@ export default function UserProfile() {
   // if user is not same user as userId, history.push
   // if user is not logged in, redirect to login
   return (
-    <>
+    <div className="user-account">
+      <h1>Account Details</h1>
       <div>
+        {" "}
+        Name:&emsp;&emsp;&emsp;
+        {sessionUser?.firstName} {sessionUser?.lastName}
+      </div>
+      <div>Username:&emsp; {sessionUser?.username}</div>
+      <div>Email:&emsp;&emsp;&emsp; {sessionUser?.email}</div>
+      <br></br>
+      <br></br>
+
+      <button className="red-btn">
         <Link to="/create-restaurant">
           Want to put your restaurant on OpenEats?
         </Link>
-      </div>
-      <h1>Account Details</h1>
-      <div>
-        {sessionUser?.firstName} {sessionUser?.lastName}
-      </div>
-      <div>{sessionUser?.username}</div>
-      <div>{sessionUser?.email}</div>
-    </>
+      </button>
+    </div>
   );
 }
