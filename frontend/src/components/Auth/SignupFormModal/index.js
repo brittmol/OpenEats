@@ -3,6 +3,7 @@ import { Modal } from "../../../context/Modal";
 import DemoUser from "../DemoUser";
 import LoginForm from "../LoginFormModal/LoginForm";
 import SignupForm from "./SignupForm";
+import "../Auth.css";
 
 function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);

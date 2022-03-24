@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../Auth/LoginFormModal/LoginForm";
+import SignupForm from "../Auth/SignupFormModal/SignupForm";
+import DemoUser from "../Auth/DemoUser";
 import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import { getRestaurants } from "../../store/restaurants";
@@ -47,7 +49,9 @@ export default function CreateResForm({ restId, sessionUser }) {
   const [numPpl, setNumPpl] = useState(2);
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
+
   const [showModal, setShowModal] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
 
   // console.log("errors", errors);
 
@@ -102,7 +106,37 @@ export default function CreateResForm({ restId, sessionUser }) {
         <div>
           {showModal && (
             <Modal onClose={() => setShowModal(false)}>
-              <LoginForm />
+              {showLogin ? (
+                <>
+                  <LoginForm />
+                  <p>
+                    Don't have an account?
+                    <button
+                      className="red-font-btn"
+                      onClick={() => setShowLogin(false)}
+                    >
+                      Sign Up
+                    </button>
+                  </p>
+                </>
+              ) : (
+                <>
+                  <SignupForm />
+                  <p>
+                    Already have an account?
+                    <button
+                      className="red-font-btn"
+                      onClick={() => setShowLogin(true)}
+                    >
+                      Log In
+                    </button>
+                  </p>
+                </>
+              )}
+              <p>
+                Want to login as a Guest?
+                <DemoUser />
+              </p>
             </Modal>
           )}
         </div>
