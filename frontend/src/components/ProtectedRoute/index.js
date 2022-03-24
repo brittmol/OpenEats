@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 import { Modal } from "../../context/Modal";
-import LoginForm from "../LoginFormModal/LoginForm";
+import LoginForm from "../Auth/LoginFormModal/LoginForm";
 import PageNotFound from "../PageNotFound/PageNotFound";
 
 const ProtectedRoute = (props) => {
