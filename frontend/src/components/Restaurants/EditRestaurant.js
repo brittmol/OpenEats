@@ -151,8 +151,8 @@ export default function EditRestaurantForm() {
           value={zipCode}
           onChange={(e) => setZipCode(e.target.value)}
         />
-        <button type="submit">Update Restaurant</button>
-        <button
+        <button type="submit" className="red-btn">Update Restaurant</button>
+        <button className="red-btn"
           onClick={() => {
             setCategory(rest?.categoryId);
             setTitle(rest?.title);
@@ -167,10 +167,16 @@ export default function EditRestaurantForm() {
         >
           Cancel
         </button>
-        <button
+        <button className="red-btn"
           onClick={() => {
-            dispatch(removeRestaurant(rest));
-            history.push(`/restaurants`);
+            if (
+              window.confirm(
+                `Are you sure you want to remove ${title} restaurant?`
+              )
+            ) {
+              dispatch(removeRestaurant(rest));
+              history.push(`/restaurants`);
+            }
           }}
         >
           Delete Restaurant

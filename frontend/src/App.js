@@ -16,7 +16,6 @@ import EditResForm from "./components/Reservations/EditRes";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OneRestaurant from "./components/Restaurants/OneRestaurant";
-import SplashPage from "./components/SplashPage";
 import Footer from "./components/Footer";
 function App() {
   const dispatch = useDispatch();
@@ -38,15 +37,6 @@ function App() {
       <main id="page-container">
         {isLoaded && (
           <Switch>
-            {/* <Route exact path="/">
-              <SplashPage />
-            </Route>
-            <Route exact path="/login">
-              <LoginFormPage />
-            </Route>
-            <Route exact path="/signup">
-              <SignupFormPage />
-            </Route> */}
             <Route exact path="/">
               <AllRestaurants />
             </Route>

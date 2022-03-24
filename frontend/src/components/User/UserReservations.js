@@ -41,13 +41,20 @@ export default function UserReservations() {
             <li>{res?.numPpl}</li>
             <li>{res?.specialReq}</li>
           </ul>
-          <button>
+          <button className="red-btn">
             <Link to={`/reservations/${res?.id}/edit`}>Modify</Link>
           </button>
           <button
+            className="red-btn"
             onClick={() => {
-              dispatch(removeRes(res));
-              // history.push(`/users/${sessionUser?.id}/reservations`);
+              if (
+                window.confirm(
+                  "Are you sure you want to cancel this reservation?"
+                )
+              ) {
+                dispatch(removeRes(res));
+                // history.push(`/users/${sessionUser?.id}/reservations`);
+              }
             }}
           >
             Delete

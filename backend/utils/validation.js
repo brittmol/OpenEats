@@ -101,16 +101,16 @@ const validateRestaurant = [
     .withMessage("Please provide a Cuisine type for your Restaurant."),
   check("address")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide an address for your spot."),
+    .withMessage("Please provide an address for your Restaurant."),
   check("city")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a city for your spot."),
+    .withMessage("Please provide a city for your Restaurant."),
   check("state")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a state for your spot."),
+    .withMessage("Please provide a state for your Restaurant."),
   check("zipCode")
     .exists({ checkFalsy: true })
-    .withMessage("Please provide a zip code for your spot.")
+    .withMessage("Please provide a zip code for your Restaurant.")
     .isLength({ min: 5, max: 5 })
     .withMessage("Please provide a valid zip code."),
   handleValidationErrors,

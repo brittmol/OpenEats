@@ -117,7 +117,9 @@ export default function EditResForm() {
             onChange={(e) => setSpecialReq(e.target.value)}
           />
         </div>
-        <button type="submit">Save Reservation</button>
+        <button type="submit" className="red-btn">
+          Save Reservation
+        </button>
       </form>
     </>
   );

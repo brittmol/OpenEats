@@ -18,7 +18,8 @@
 }
 
 .modal-form-submit-btn {
-  /* width: fit-content; */
+  background-color: #ce7b81;
+  border: #ce7b81 solid 1px;
   padding: 5px 10px;
 }
 

@@ -118,7 +118,9 @@ export default function CreateRestaurantForm() {
           value={zipCode}
           onChange={(e) => setZipCode(e.target.value)}
         />
-        <button type="submit">Create Spot</button>
+        <button type="submit" className="red-btn">
+          Create Restaurant
+        </button>
       </form>
     </>
   );
