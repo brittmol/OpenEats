@@ -24,6 +24,11 @@ export default function AllRestaurants() {
             Reserve a table at one of our restaurants or add a restaurant on our
             site!
           </p>
+          <button className="red-btn">
+            <Link to="/create-restaurant">
+              Want to put your restaurant on OpenEats?
+            </Link>
+          </button>
           {/* <input placeholder="*** This will be where you can search for reservation ***" />
           <input placeholder="Location, Restaurant, or Cuisine" />
           <button className="red">Let's go</button> */}
