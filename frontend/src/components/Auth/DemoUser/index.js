@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../store/session";
+import { login } from "../../../store/session";
 
 export default function DemoUser() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function DemoUser() {
     );
   };
   return (
-    <button className="profile-buttons" onClick={demoLogin}>
+    <button className="red-font-btn" onClick={demoLogin}>
       Demo User
     </button>
   );

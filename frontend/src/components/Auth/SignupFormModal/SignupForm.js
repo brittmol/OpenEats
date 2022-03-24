@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../../store/session";
 import { useDispatch } from "react-redux";
-import DemoUser from "../../DemoUser/DemoUser";
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -100,7 +99,6 @@ function SignupForm() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
-      <DemoUser />
     </>
   );
 }

@@ -88,6 +88,14 @@ form > button {
   color: #fff;
 }
 
+.red-font-btn {
+  background-color: #fff;
+  border: #fff solid 1px;
+  border-radius: 3px;
+  color: #da3743;
+  font-weight: bolder;
+}
+
 /* page not found */
 .panda {
   padding: 5px 200px;
