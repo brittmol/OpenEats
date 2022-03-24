@@ -112,6 +112,7 @@
 .panel-header {
   height: 35px;
   border-bottom: #d8d9db solid 1px;
+  font-weight: bold;
   /* border-bottom: rgb(51, 49, 49) solid 1px; */
   /* background-color: aqua; */
 }
