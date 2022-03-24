@@ -30,5 +30,11 @@ nav li {
 
 .profile-dropdown {
   position: absolute;
+  background-color: #fff;
+  /* border: #da3743 solid 1px; */
+  box-sizing: border-box;
+  box-shadow: 0px 1px 1px 1px #ecb5b9;
+  margin-left: -107px;
+  /* margin-top: 1px; */
+  padding: 10px;
 }
-

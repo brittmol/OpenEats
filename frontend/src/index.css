@@ -84,26 +84,25 @@ a {
 
 .red-btn,
 form > button {
-  background-color: #ce7b81;
-  border: #ce7b81 solid 1px;
-  border-radius: 3px;
+  background-color: #c01823;
+  border: #fff solid 1px;
+  border-radius: 5px;
   color: #fff;
   padding: 5px 7px;
-  transition: all 0.2s;
-}
-
-.red-font-btn {
-  background-color: #fff;
-  border: #fff solid 1px;
-  border-radius: 3px;
-  color: #da3743;
-  font-weight: bolder;
   transition: all 0.2s;
 }
 
 .red-btn:hover {
   background-color: #da3743;
   border: #da3743 solid 1px;
+  transition: all 0.2s;
+}
+.red-font-btn {
+  background-color: #fff;
+  border: #fff solid 1px;
+  border-radius: 3px;
+  color: #da3743;
+  font-weight: bolder;
   transition: all 0.2s;
 }
 

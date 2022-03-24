@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { getReservations, updateRes } from "../../store/reservations";
+import {
+  getReservations,
+  updateRes,
+  removeRes,
+} from "../../store/reservations";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
+import "../User/User.css";
 
 export default function EditResForm() {
   const dispatch = useDispatch();
@@ -64,8 +69,8 @@ export default function EditResForm() {
 
   return (
     <>
-      <h1>Edit your Reservation</h1>
       <form onSubmit={handleSubmit} className="rsv-form">
+        <h1>Edit your Reservation</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx} className="errors">
@@ -119,6 +124,32 @@ export default function EditResForm() {
         </div>
         <button type="submit" className="red-btn">
           Save Reservation
+        </button>
+        <button
+          className="red-btn"
+          onClick={() => {
+            setTime(new Date(res?.time));
+            setNumPpl(res?.numPpl);
+            setSpecialReq(res?.specialReq);
+            history.push(`/users/${sessionUser?.id}/reservations`);
+          }}
+        >
+          Cancel
+        </button>
+        <button
+          className="red-btn"
+          onClick={() => {
+            if (
+              window.confirm(
+                "Are you sure you want to cancel this reservation?"
+              )
+            ) {
+              dispatch(removeRes(res));
+              // history.push(`/users/${sessionUser?.id}/reservations`);
+            }
+          }}
+        >
+          Delete
         </button>
       </form>
     </>

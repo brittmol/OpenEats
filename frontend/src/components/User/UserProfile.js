@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useHistory, Link } from "react-router-dom";
+import "./User.css"
 
 export default function UserProfile() {
   const history = useHistory();
