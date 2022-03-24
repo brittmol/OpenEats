@@ -23,7 +23,8 @@
 }
 
 .modal-form-submit-btn:hover {
-  background-color: #ce7b81;
+  background-color: #da3743;
+  border: #da3743 solid 1px;
 }
 
 .modal-form-title {

@@ -48,10 +48,12 @@ footer p {
 
 footer a {
   color: #d8d9db;
+  transition: all 0.2s;
 }
 
 footer a:hover {
   color: #da3743;
+  transition: all 0.2s;
 }
 
 .footer-links {
@@ -82,11 +84,12 @@ a {
 
 .red-btn,
 form > button {
-  background-color: #da3743;
-  border: #da3743 solid 1px;
+  background-color: #ce7b81;
+  border: #ce7b81 solid 1px;
   border-radius: 3px;
   color: #fff;
   padding: 5px 7px;
+  transition: all 0.2s;
 }
 
 .red-font-btn {
@@ -95,15 +98,18 @@ form > button {
   border-radius: 3px;
   color: #da3743;
   font-weight: bolder;
+  transition: all 0.2s;
 }
 
 .red-btn:hover {
-  background-color: #ce7b81;
-  border: #ce7b81 solid 1px;
+  background-color: #da3743;
+  border: #da3743 solid 1px;
+  transition: all 0.2s;
 }
 
 .red-font-btn:hover {
-  color: #8a171e;
+  color: #8a020b;
+  transition: all 0.2s;
 }
 
 /* page not found */
