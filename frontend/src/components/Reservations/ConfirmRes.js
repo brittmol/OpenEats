@@ -32,16 +32,16 @@ export default function ConfirmRes() {
 
   return (
     <>
-      <h1>Confirmed Reservation!</h1>
-      <div>
-        <ul>
-          <li>{res?.User?.username}</li>
-          <li>{res?.Restaurant?.title}</li>
-          <li>{date(res?.time)}</li>
-          <li>{time(res?.time)}</li>
-          <li>{res?.numPpl}</li>
-          <li>{res?.specialReq}</li>
-        </ul>
+      <div className="confirm-res">
+        <h1>Confirmed Reservation!</h1>
+        <h3 style={{ color: "#c01823" }}>
+          {res?.User?.firstName} {res?.User?.lastName}
+        </h3>
+        <h3 style={{ fontStyle: "italic" }}>{res?.Restaurant?.title}</h3>
+        <div>{date(res?.time)}</div>
+        <div>{time(res?.time)}</div>
+        <div>{res?.numPpl} people</div>
+        <div>*Special Request: {res?.specialReq}</div>
       </div>
     </>
   );

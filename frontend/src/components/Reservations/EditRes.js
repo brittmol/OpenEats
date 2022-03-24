@@ -78,6 +78,7 @@ export default function EditResForm() {
             </li>
           ))}
         </ul>
+        <h3 style={{ fontStyle: "italic" }}>{res?.Restaurant?.title}</h3>
         <DatePicker
           placeholderText="Click to select a Date"
           selected={time}

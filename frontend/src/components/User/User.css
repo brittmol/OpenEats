@@ -25,7 +25,7 @@
   width: 300px;
 }
 
-.rsv-form {
-  margin: 0 500px;
-
+.rsv-form,
+.confirm-res {
+  margin: 0 450px;
 }
