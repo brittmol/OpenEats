@@ -91,7 +91,9 @@ export default function EditRestaurantForm() {
         <h1>Update Restaurant</h1>
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className="errors">
+              {error}
+            </li>
           ))}
         </ul>
         <input

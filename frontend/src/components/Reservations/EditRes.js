@@ -68,7 +68,9 @@ export default function EditResForm() {
       <form onSubmit={handleSubmit} className="rsv-form">
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className="errors">
+              {error}
+            </li>
           ))}
         </ul>
         <DatePicker

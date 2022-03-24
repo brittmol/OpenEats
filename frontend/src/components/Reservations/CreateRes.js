@@ -13,6 +13,7 @@ import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setSeconds from "date-fns/setSeconds";
 import "react-datepicker/dist/react-datepicker.css";
+import "../Auth/Auth.css";
 
 export default function CreateResForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
@@ -100,7 +101,9 @@ export default function CreateResForm({ restId, sessionUser }) {
         <div className="panel-header">Make a Reservation</div>
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className="errors">
+              {error}
+            </li>
           ))}
         </ul>
         <div>
@@ -109,7 +112,7 @@ export default function CreateResForm({ restId, sessionUser }) {
               {showLogin ? (
                 <>
                   <LoginForm />
-                  <p>
+                  <p className="modal-form-p">
                     Don't have an account?
                     <button
                       className="red-font-btn"
@@ -122,7 +125,7 @@ export default function CreateResForm({ restId, sessionUser }) {
               ) : (
                 <>
                   <SignupForm />
-                  <p>
+                  <p className="modal-form-p">
                     Already have an account?
                     <button
                       className="red-font-btn"
@@ -133,7 +136,7 @@ export default function CreateResForm({ restId, sessionUser }) {
                   </p>
                 </>
               )}
-              <p>
+              <p className="modal-form-p">
                 Want to login as a Guest?
                 <DemoUser />
               </p>

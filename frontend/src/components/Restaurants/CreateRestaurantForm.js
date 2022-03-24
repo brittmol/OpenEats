@@ -58,7 +58,9 @@ export default function CreateRestaurantForm() {
       <form onSubmit={handleSubmit} className="rest-form">
         <ul>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx} className="errors">
+              {error}
+            </li>
           ))}
         </ul>
         <input

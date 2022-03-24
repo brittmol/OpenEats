@@ -17,7 +17,7 @@ function LoginFormModal() {
           {showLogin ? (
             <>
               <LoginForm />
-              <p>
+              <p className="modal-form-p">
                 Don't have an account?
                 <button
                   className="red-font-btn"
@@ -30,7 +30,7 @@ function LoginFormModal() {
           ) : (
             <>
               <SignupForm />
-              <p>
+              <p className="modal-form-p">
                 Already have an account?
                 <button
                   className="red-font-btn"
@@ -41,7 +41,7 @@ function LoginFormModal() {
               </p>
             </>
           )}
-          <p>
+          <p className="modal-form-p">
             Want to login as a Guest?
             <DemoUser />
           </p>

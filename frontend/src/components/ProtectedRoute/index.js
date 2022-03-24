@@ -7,6 +7,7 @@ import { Modal } from "../../context/Modal";
 import LoginForm from "../Auth/LoginFormModal/LoginForm";
 import SignupForm from "../Auth/SignupFormModal/SignupForm";
 import DemoUser from "../Auth/DemoUser";
+import "../Auth/Auth.css";
 
 const ProtectedRoute = (props) => {
   const user = useSelector((state) => state.session.user);
@@ -27,7 +28,7 @@ const ProtectedRoute = (props) => {
                 {showLogin ? (
                   <>
                     <LoginForm />
-                    <p>
+                    <p className="modal-form-p">
                       Don't have an account?
                       <button
                         className="red-font-btn"
@@ -40,7 +41,7 @@ const ProtectedRoute = (props) => {
                 ) : (
                   <>
                     <SignupForm />
-                    <p>
+                    <p className="modal-form-p">
                       Already have an account?
                       <button
                         className="red-font-btn"
@@ -51,7 +52,7 @@ const ProtectedRoute = (props) => {
                     </p>
                   </>
                 )}
-                <p>
+                <p className="modal-form-p">
                   Want to login as a Guest?
                   <DemoUser />
                 </p>

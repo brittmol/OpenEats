@@ -1,6 +1,30 @@
 .modal-form {
-  background-color: aqua;
   display: flex;
   flex-direction: column;
-  padding: 20px 50px;
+  padding: 0px 50px 20px 50px;
+  margin-top: -20px;
+  border-bottom: #d8d9db solid 1px;
+}
+
+.modal-form > label {
+  padding: 10px 0;
+}
+
+.modal-form-p {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 50px;
+  margin: 10px 0;
+}
+
+.modal-form-submit-btn {
+  /* width: fit-content; */
+  padding: 5px 10px;
+}
+
+.modal-form-title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  border-bottom: #d8d9db solid 1px;
 }
