@@ -38,7 +38,7 @@ function App() {
       <main id="page-container">
         {isLoaded && (
           <Switch>
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <SplashPage />
             </Route>
             <Route exact path="/login">
@@ -46,8 +46,8 @@ function App() {
             </Route>
             <Route exact path="/signup">
               <SignupFormPage />
-            </Route>
-            <Route exact path="/restaurants">
+            </Route> */}
+            <Route exact path="/">
               <AllRestaurants />
             </Route>
             <Route exact path="/restaurants/:restId">

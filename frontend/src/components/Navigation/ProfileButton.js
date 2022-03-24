@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
@@ -26,6 +27,9 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
+    // if url is /restaurants/:restId then history.push there
+    // else:
+    history.push("/");
     dispatch(sessionActions.logout());
   };
 
@@ -39,16 +43,12 @@ function ProfileButton({ user }) {
           Hi {user.firstName}!
           <div>
             <NavLink to={`/users/${user.id}/profile`}>
-              <button>
-                My Profile
-              </button>
+              <button>My Profile</button>
             </NavLink>
           </div>
           <div>
             <NavLink to={`/users/${user.id}/reservations`}>
-              <button>
-                My Reservations
-              </button>
+              <button>My Reservations</button>
             </NavLink>
           </div>
           <div>

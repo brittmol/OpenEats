@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
     <nav>
       <div className="nav-bar">
         <div className="left-bar">
-          <NavLink exact to="/restaurants">
+          <NavLink exact to="/">
             <div className="logo">
               <img src={logo} alt="logo" />
               <p>OpenEats</p>
