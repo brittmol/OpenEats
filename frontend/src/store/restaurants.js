@@ -9,6 +9,14 @@ export const loadRestaurants = (restaurants) => {
   };
 };
 
+const LOAD_ONE_RESTAURANT = "reservations/LOAD_ONE_RESTAURANT";
+export const loadOneRestaurant = (restaurant) => {
+  return {
+    type: LOAD_ONE_RESTAURANT,
+    restaurant,
+  };
+};
+
 const ADD_RESTAURANT = "restaurants/ADD_RESTAURANT";
 export const addRestaurant = (restaurant) => {
   return {
@@ -31,6 +39,15 @@ export const getRestaurants = () => async (dispatch) => {
   if (response.ok) {
     const restaurants = await response.json();
     dispatch(loadRestaurants(restaurants));
+  }
+};
+
+export const getOneRestaurant = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/restaurants/${id}`);
+  if (response.ok) {
+    const restaurant = await response.json();
+    dispatch(loadOneRestaurant(restaurant));
+    return restaurant;
   }
 };
 
@@ -100,6 +117,12 @@ export default function restaurantReducer(state = {}, action) {
         newState[rest.id] = rest;
       });
       return newState;
+    }
+    case LOAD_ONE_RESTAURANT: {
+      return (newState = {
+        ...state,
+        [action.restaurant.id]: action.restaurant,
+      });
     }
     case ADD_RESTAURANT: {
       return (newState = {

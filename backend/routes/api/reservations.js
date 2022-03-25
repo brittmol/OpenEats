@@ -21,7 +21,15 @@ router.get(
   "/",
   asyncHandler(async (req, res) => {
     const reservations = await Reservation.findAll({
-      include: [{ model: User }, { model: Restaurant }],
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Restaurant,
+          include: [Category],
+        },
+      ],
     });
     return res.json(reservations);
   })

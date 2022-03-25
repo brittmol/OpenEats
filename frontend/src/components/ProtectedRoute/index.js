@@ -19,7 +19,6 @@ const ProtectedRoute = (props) => {
           <PageNotFound />
           <CheckLogin />
           {/* <AllRestaurants /> */}
-          {/* <Redirect to="/login" /> */}
         </>
       )}
     </Route>
