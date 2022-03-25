@@ -151,8 +151,11 @@ export default function EditRestaurantForm() {
           value={zipCode}
           onChange={(e) => setZipCode(e.target.value)}
         />
-        <button type="submit" className="red-btn">Update Restaurant</button>
-        <button className="red-btn"
+        <button type="submit" className="red-btn">
+          Update Restaurant
+        </button>
+        <button
+          className="red-btn"
           onClick={() => {
             setCategory(rest?.categoryId);
             setTitle(rest?.title);
@@ -167,7 +170,8 @@ export default function EditRestaurantForm() {
         >
           Cancel
         </button>
-        <button className="red-btn"
+        <button
+          className="red-btn"
           onClick={() => {
             if (
               window.confirm(

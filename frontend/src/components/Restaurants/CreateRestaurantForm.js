@@ -43,6 +43,8 @@ export default function CreateRestaurantForm() {
     };
 
     setErrors([]);
+
+
     const restaurant = await dispatch(createRestaurant(payload)).catch(
       async (res) => {
         const data = await res.json();

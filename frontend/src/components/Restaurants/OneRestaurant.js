@@ -10,9 +10,13 @@ export default function OneRestaurant() {
   const dispatch = useDispatch();
   const { restId } = useParams();
 
+  // useEffect(() => {
+  //   dispatch(getOneRestaurant(restId))
+  //   if (!rest) return <Redirect to={`/restaurants/${restId}/page-not-found`} />;
+  // }, [dispatch, restId]);
+
   useEffect(() => {
-    dispatch(getOneRestaurant(restId))
-    if (!rest) return <Redirect to={`/restaurants/${restId}/page-not-found`} />;
+    dispatch(getRestaurants());
   }, [dispatch, restId]);
 
   const sessionUser = useSelector((store) => store.session.user);
@@ -28,12 +32,9 @@ export default function OneRestaurant() {
 
   return (
     <>
-      {/* {restId && !rest ? (
+      {restId && !rest ? (
         <Redirect to={`/restaurants/${restId}/page-not-found`} />
-      ) : null} */}
-      {/* {loaded && !rest ? (
-        <Redirect to={`/restaurants/${restId}/page-not-found`} />
-      ) : ( */}
+      ) : null}
       <div className="one-rest-page">
         <div>
           <img
@@ -72,7 +73,6 @@ export default function OneRestaurant() {
           </div>
         </div>
       </div>
-      // )}
     </>
   );
 }

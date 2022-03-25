@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
-import { getOneRes, updateRes, removeRes } from "../../store/reservations";
+import { getReservations, getOneRes, updateRes, removeRes } from "../../store/reservations";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,9 +12,13 @@ export default function EditResForm() {
   const history = useHistory();
   const { resId } = useParams();
 
+  // useEffect(() => {
+  //   dispatch(getOneRes(resId));
+  // }, [dispatch, resId]);
+
   useEffect(() => {
-    dispatch(getOneRes(resId));
-  }, [dispatch, resId]);
+    dispatch(getReservations(sessionUser?.id))
+  }, [dispatch, sessionUser])
 
   const sessionUser = useSelector((store) => store.session.user);
   const res = useSelector((store) => store.reservationReducer[resId]);
