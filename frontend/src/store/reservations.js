@@ -9,6 +9,14 @@ export const loadRes = (reservations) => {
   };
 };
 
+const LOAD_ONE_RES = "reservations/LOAD_ONE_RES";
+export const loadOneRes = (res) => {
+  return {
+    type: LOAD_ONE_RES,
+    res,
+  };
+};
+
 const ADD_RES = "reservations/ADD_RES";
 export const addRes = (res) => {
   return {
@@ -31,6 +39,16 @@ export const getReservations = (userId) => async (dispatch) => {
   if (response.ok) {
     const reservations = await response.json();
     dispatch(loadRes(reservations));
+    return reservations;
+  }
+};
+
+export const getOneRes = (id) => async (dispatch) => {
+  const response = await csrfFetch(`/api/reservations/${id}`);
+  if (response.ok) {
+    const reservation = await response.json();
+    dispatch(loadOneRes(reservation));
+    return reservation;
   }
 };
 
@@ -100,6 +118,12 @@ export default function reservationReducer(state = {}, action) {
         newState[res.id] = res;
       });
       return newState;
+    }
+    case LOAD_ONE_RES: {
+      return (newState = {
+        ...state,
+        [action.res.id]: action.res,
+      });
     }
     case ADD_RES: {
       return (newState = {

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Modal } from "../../context/Modal";
+import LoginForm from "../Auth/LoginFormModal/LoginForm";
+import SignupForm from "../Auth/SignupFormModal/SignupForm";
+import DemoUser from "../Auth/DemoUser";
+import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import { getRestaurants } from "../../store/restaurants";
-import CheckLogin from "../Auth/CheckLogin";
 import { startDateValue } from "./functions";
-import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Auth/Auth.css";
 
-export default function CreateResForm({ restId, sessionUser }) {
+export default function OldCreateResForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,8 +26,12 @@ export default function CreateResForm({ restId, sessionUser }) {
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const [showModal, setShowModal] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
+
   useEffect(() => {
     if (sessionUser) {
+      setShowModal(false);
       const newErrors = errors.filter((e) => e !== "Unauthorized");
       setErrors(newErrors);
       history.push(`/restaurants/${restId}`);
@@ -33,6 +40,10 @@ export default function CreateResForm({ restId, sessionUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!sessionUser) {
+      setShowModal(true);
+    }
 
     const payload = {
       userId: sessionUser?.id,
@@ -64,10 +75,46 @@ export default function CreateResForm({ restId, sessionUser }) {
           {errors.map((error, idx) => (
             <li key={idx} className="errors">
               {error}
-              {error === "Unauthorized" ? <CheckLogin /> : null}
             </li>
           ))}
         </ul>
+        <div>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>
+              {showLogin ? (
+                <>
+                  <LoginForm />
+                  <p className="modal-form-p">
+                    Don't have an account?
+                    <button
+                      className="red-font-btn"
+                      onClick={() => setShowLogin(false)}
+                    >
+                      Sign Up
+                    </button>
+                  </p>
+                </>
+              ) : (
+                <>
+                  <SignupForm />
+                  <p className="modal-form-p">
+                    Already have an account?
+                    <button
+                      className="red-font-btn"
+                      onClick={() => setShowLogin(true)}
+                    >
+                      Log In
+                    </button>
+                  </p>
+                </>
+              )}
+              <p className="modal-form-p">
+                Want to login as a Guest?
+                <DemoUser />
+              </p>
+            </Modal>
+          )}
+        </div>
         <DatePicker
           placeholderText="Click to select a Date"
           selected={time}

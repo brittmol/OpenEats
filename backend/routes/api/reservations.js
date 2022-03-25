@@ -17,7 +17,6 @@ const router = express.Router();
 
 // ------------------ ROUTES ------------------------------------------
 
-// will put in Users ----------------
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -27,7 +26,25 @@ router.get(
     return res.json(reservations);
   })
 );
-//------------------------
+
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const reservation = await Reservation.findByPk(id, {
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Restaurant,
+          include: [Category],
+        },
+      ],
+    });
+    return res.json(reservation);
+  })
+);
 
 router.post(
   "/",

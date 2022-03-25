@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getReservations } from "../../store/reservations";
+import { date, time } from "./functions";
 
 export default function AllReservations() {
   const dispatch = useDispatch();
@@ -12,13 +13,6 @@ export default function AllReservations() {
 
   const reservations = useSelector((store) => store.reservationReducer);
   const resArray = Object.values(reservations);
-
-  const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
-  const time = (resTime) =>
-    new Date(resTime).toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
 
   return (
     <>

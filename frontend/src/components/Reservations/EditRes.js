@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import {
-  getReservations,
-  updateRes,
-  removeRes,
-} from "../../store/reservations";
+import { useParams, useHistory, Redirect } from "react-router-dom";
+import { getOneRes, updateRes, removeRes } from "../../store/reservations";
 import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,25 +12,17 @@ export default function EditResForm() {
   const history = useHistory();
   const { resId } = useParams();
 
-  const sessionUser = useSelector((store) => store.session.user);
-  const reservations = useSelector((store) => store.reservationReducer);
-  const res = reservations[resId];
+  useEffect(() => {
+    dispatch(getOneRes(resId));
+  }, [dispatch, resId]);
 
-  const [loaded, setLoaded] = useState(false);
+  const sessionUser = useSelector((store) => store.session.user);
+  const res = useSelector((store) => store.reservationReducer[resId]);
 
   const [time, setTime] = useState(null);
   const [numPpl, setNumPpl] = useState(null);
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    dispatch(getReservations(sessionUser?.id)).then(() => setLoaded(true));
-  }, [dispatch, sessionUser]);
-
-  useEffect(() => {
-    if (loaded && res?.userId !== sessionUser?.id)
-      history.push(`/users/${sessionUser?.id}/reservations`);
-  }, [loaded, res, sessionUser, history]);
 
   useEffect(() => {
     if (res) {
@@ -69,6 +57,9 @@ export default function EditResForm() {
 
   return (
     <>
+      {res && res?.userId !== sessionUser?.id ? (
+        <Redirect to={`/users/${sessionUser?.id}/reservations`} />
+      ) : null}
       <form onSubmit={handleSubmit} className="rsv-form">
         <h1>Edit your Reservation</h1>
         <ul>
@@ -146,7 +137,6 @@ export default function EditResForm() {
               )
             ) {
               dispatch(removeRes(res));
-              // history.push(`/users/${sessionUser?.id}/reservations`);
             }
           }}
         >
