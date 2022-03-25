@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import {
   updateRestaurant,
   removeRestaurant,
@@ -22,6 +22,11 @@ export default function EditRestaurantForm() {
 
   const [loaded, setLoaded] = useState(false);
 
+  useEffect(() => {
+    dispatch(getRestaurants()).then(() => setLoaded(true));
+    dispatch(getCategories());
+  }, [dispatch]);
+
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
@@ -31,19 +36,6 @@ export default function EditRestaurantForm() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    dispatch(getRestaurants()).then(() => setLoaded(true));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (loaded && rest?.ownerId !== sessionUser?.id)
-      history.push(`/restaurants/${rest?.id}`);
-  }, [loaded, rest, sessionUser, history]);
 
   useEffect(() => {
     if (rest) {
@@ -86,6 +78,12 @@ export default function EditRestaurantForm() {
 
   return (
     <>
+      {loaded && !rest ? (
+        <Redirect to={`/restaurants/${restId}/page-not-found`} />
+      ) : null}
+      {rest && rest?.ownerId !== sessionUser?.id ? (
+        <Redirect to={`/restaurants/${restId}`} />
+      ) : null}
       <form onSubmit={handleSubmit} className="rest-form">
         <h1>Update Restaurant</h1>
         <ul>

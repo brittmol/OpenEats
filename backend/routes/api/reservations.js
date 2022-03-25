@@ -35,24 +35,24 @@ router.get(
   })
 );
 
-router.get(
-  "/:id",
-  asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    const reservation = await Reservation.findByPk(id, {
-      include: [
-        {
-          model: User,
-        },
-        {
-          model: Restaurant,
-          include: [Category],
-        },
-      ],
-    });
-    return res.json(reservation);
-  })
-);
+// router.get(
+//   "/:id",
+//   asyncHandler(async (req, res) => {
+//     const { id } = req.params;
+//     const reservation = await Reservation.findByPk(id, {
+//       include: [
+//         {
+//           model: User,
+//         },
+//         {
+//           model: Restaurant,
+//           include: [Category],
+//         },
+//       ],
+//     });
+//     return res.json(reservation);
+//   })
+// );
 
 router.post(
   "/",

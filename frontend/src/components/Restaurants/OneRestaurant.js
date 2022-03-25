@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
@@ -13,25 +13,17 @@ export default function OneRestaurant() {
   const sessionUser = useSelector((store) => store.session.user);
   const rest = useSelector((store) => store.restaurantReducer[restId]);
 
+  const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
-    dispatch(getRestaurants());
+    dispatch(getRestaurants()).then(() => setLoaded(true));
   }, [dispatch]);
-
-  // console.log("rest");
-  // const restaurants = useSelector((store) => store.restaurantReducer);
-  // const rest = restaurants[restId];
-
-  // const [loaded, setLoaded] = useState(false);
-
-  // useEffect(() => {
-  //   dispatch(getRestaurants()).then(() => setLoaded(true));
-  // }, [dispatch]);
 
   return (
     <>
-      {/* {restId && !rest ? (
+      {loaded && !rest ? (
         <Redirect to={`/restaurants/${restId}/page-not-found`} />
-      ) : null} */}
+      ) : null}
       <div className="one-rest-page">
         <div>
           <img

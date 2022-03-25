@@ -9,6 +9,7 @@ export default function UserReservations() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { userId } = useParams();
+
   const sessionUser = useSelector((store) => store.session.user);
   const reservations = useSelector((store) => store.reservationReducer);
   const resArray = Object.values(reservations);
