@@ -29,7 +29,7 @@ export default function CreateResForm({ restId, sessionUser }) {
       setErrors(newErrors);
       history.push(`/restaurants/${restId}`);
     }
-  }, [sessionUser, history, restId]);
+  }, [sessionUser, history, restId, errors]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

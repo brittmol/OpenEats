@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { getReservations, removeRes } from "../../store/reservations";
+import { date, time } from "../Reservations/functions";
 import "./User.css";
 
 export default function UserReservations() {
@@ -21,13 +22,6 @@ export default function UserReservations() {
   useEffect(() => {
     dispatch(getReservations(sessionUser?.id));
   }, [dispatch, sessionUser]);
-
-  const date = (resTime) => new Date(resTime).toLocaleDateString("en-US");
-  const time = (resTime) =>
-    new Date(resTime).toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
 
   return (
     <>

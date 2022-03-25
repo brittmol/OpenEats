@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
-import { getRestaurants, getOneRestaurant } from "../../store/restaurants";
+import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating";
@@ -10,17 +10,14 @@ export default function OneRestaurant() {
   const dispatch = useDispatch();
   const { restId } = useParams();
 
-  // useEffect(() => {
-  //   dispatch(getOneRestaurant(restId))
-  //   if (!rest) return <Redirect to={`/restaurants/${restId}/page-not-found`} />;
-  // }, [dispatch, restId]);
+  const sessionUser = useSelector((store) => store.session.user);
+  const rest = useSelector((store) => store.restaurantReducer[restId]);
 
   useEffect(() => {
     dispatch(getRestaurants());
-  }, [dispatch, restId]);
+  }, [dispatch]);
 
-  const sessionUser = useSelector((store) => store.session.user);
-  const rest = useSelector((store) => store.restaurantReducer[restId]);
+  // console.log("rest");
   // const restaurants = useSelector((store) => store.restaurantReducer);
   // const rest = restaurants[restId];
 
@@ -32,9 +29,9 @@ export default function OneRestaurant() {
 
   return (
     <>
-      {restId && !rest ? (
+      {/* {restId && !rest ? (
         <Redirect to={`/restaurants/${restId}/page-not-found`} />
-      ) : null}
+      ) : null} */}
       <div className="one-rest-page">
         <div>
           <img

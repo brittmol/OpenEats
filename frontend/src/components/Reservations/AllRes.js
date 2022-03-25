@@ -5,14 +5,14 @@ import { date, time } from "./functions";
 
 export default function AllReservations() {
   const dispatch = useDispatch();
+
   const sessionUser = useSelector((store) => store.session.user);
+  const reservations = useSelector((store) => store.reservationReducer);
+  const resArray = Object.values(reservations);
 
   useEffect(() => {
     dispatch(getReservations(sessionUser.id));
   }, [dispatch]);
-
-  const reservations = useSelector((store) => store.reservationReducer);
-  const resArray = Object.values(reservations);
 
   return (
     <>

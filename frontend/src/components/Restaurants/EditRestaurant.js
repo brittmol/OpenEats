@@ -15,8 +15,7 @@ export default function EditRestaurantForm() {
   const { restId } = useParams();
 
   const sessionUser = useSelector((store) => store.session.user);
-  const restaurants = useSelector((store) => store.restaurantReducer);
-  const rest = restaurants[restId];
+  const rest = useSelector((store) => store.restaurantReducer[restId]);
 
   const categories = useSelector((store) => store.categoryReducer);
   const categoriesArr = Object.values(categories);

@@ -9,13 +9,12 @@ export default function CreateRestaurantForm() {
   const dispatch = useDispatch();
   const history = useHistory();
   const sessionUser = useSelector((store) => store.session.user);
+  const categories = useSelector((store) => store.categoryReducer);
+  const categoriesArr = Object.values(categories);
 
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
-
-  const categories = useSelector((store) => store.categoryReducer);
-  const categoriesArr = Object.values(categories);
 
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
@@ -43,7 +42,6 @@ export default function CreateRestaurantForm() {
     };
 
     setErrors([]);
-
 
     const restaurant = await dispatch(createRestaurant(payload)).catch(
       async (res) => {
