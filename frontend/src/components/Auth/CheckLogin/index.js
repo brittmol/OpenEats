@@ -9,12 +9,12 @@ import "../Auth.css";
 export default function CheckLogin() {
   const sessionUser = useSelector((store) => store.session.user);
 
+  const [showModal, setShowModal] = useState(true);
+  const [showLogin, setShowLogin] = useState(true);
+
   useEffect(() => {
     if (sessionUser) return setShowModal(false);
   }, [sessionUser]);
-
-  const [showModal, setShowModal] = useState(true);
-  const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>

@@ -23,37 +23,31 @@ export default function CreateResForm({ restId, sessionUser }) {
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
 
-  useEffect(() => {
-    if (sessionUser) {
-      const newErrors = errors.filter((e) => e !== "Unauthorized");
-      setErrors(newErrors);
-      history.push(`/restaurants/${restId}`);
-    }
-  }, [sessionUser, history, restId, errors]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (sessionUser) {
+      const payload = {
+        userId: sessionUser?.id,
+        restaurantId: restId,
+        time,
+        numPpl,
+        specialReq,
+      };
 
-    const payload = {
-      userId: sessionUser?.id,
-      restaurantId: restId,
-      time,
-      numPpl,
-      specialReq,
-    };
+      setErrors([]);
+      const newRes = await dispatch(createRes(payload)).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) return setErrors(data.errors);
+      });
 
-    setErrors([]);
-    const newRes = await dispatch(createRes(payload)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) return setErrors(data.errors);
-    });
-
-    if (newRes) {
-      setTime(startDateValue());
-      setNumPpl(2);
-      setSpecialReq("");
-      return history.push(`/reservations/${newRes.id}/confirmation`);
+      if (newRes) {
+        setTime(startDateValue());
+        setNumPpl(2);
+        setSpecialReq("");
+        return history.push(`/reservations/${newRes.id}/confirmation`);
+      }
     }
+    return setErrors(["Please log in to reserve a table."]);
   };
 
   return (
@@ -64,7 +58,9 @@ export default function CreateResForm({ restId, sessionUser }) {
           {errors.map((error, idx) => (
             <li key={idx} className="errors">
               {error}
-              {error === "Unauthorized" ? <CheckLogin /> : null}
+              {error === "Please log in to reserve a table." ? (
+                <CheckLogin />
+              ) : null}
             </li>
           ))}
         </ul>

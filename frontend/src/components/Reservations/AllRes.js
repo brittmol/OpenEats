@@ -12,7 +12,7 @@ export default function AllReservations() {
 
   useEffect(() => {
     dispatch(getReservations(sessionUser.id));
-  }, [dispatch]);
+  }, [dispatch, sessionUser]);
 
   return (
     <>
