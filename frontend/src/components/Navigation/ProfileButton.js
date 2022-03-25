@@ -43,16 +43,16 @@ function ProfileButton({ user }) {
           Hi {user.firstName}!
           <div>
             <NavLink to={`/users/${user.id}/profile`}>
-              <button>My Profile</button>
+              <button className="red-font-btn">My Profile</button>
             </NavLink>
           </div>
           <div>
             <NavLink to={`/users/${user.id}/reservations`}>
-              <button>My Reservations</button>
+              <button className="red-font-btn">My Reservations</button>
             </NavLink>
           </div>
           <div>
-            <button onClick={logout}>Log Out</button>
+            <button onClick={logout} className="red-font-btn">Log Out</button>
           </div>
         </div>
       )}
