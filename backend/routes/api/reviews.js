@@ -27,14 +27,6 @@ router.get(
   })
 );
 
-// get one
-router.get("/:revId", asyncHandler(async (req, res) => {
-    const { revId } = req.params;
-    const review = await Review.findByPk(revId);
-    return res.json(review)
-}))
-//
-
 router.post(
   "/",
   requireAuth,

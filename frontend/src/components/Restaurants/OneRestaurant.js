@@ -5,6 +5,7 @@ import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating";
+import RestaurantReviews from "../Reviews/RestaurantReviews";
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function OneRestaurant() {
 
   const sessionUser = useSelector((store) => store.session.user);
   const rest = useSelector((store) => store.restaurantReducer[restId]);
+  const reviews = rest?.Reviews;
 
   const [loaded, setLoaded] = useState(false);
 
@@ -52,6 +54,7 @@ export default function OneRestaurant() {
               <StarRating />
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
+              <RestaurantReviews reviews={reviews} />
             </div>
           </div>
           <div className="right-panel">
