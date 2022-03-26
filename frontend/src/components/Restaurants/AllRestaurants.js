@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
-import StarRating from "../Reviews/StarRating";
+import StarRating from "../Reviews/StarRating/StarRating"
 
 export default function AllRestaurants() {
   const dispatch = useDispatch();

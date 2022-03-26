@@ -1,5 +1,5 @@
-import StarRating from "./StarRating";
-import ViewStarRating from "./ViewStarRating";
+import StarRating from "./StarRating/StarRating";
+import ViewStarRating from "./StarRating/ViewStarRating"
 
 export default function RestaurantReviews({ reviews }) {
   return (

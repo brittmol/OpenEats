@@ -4,8 +4,8 @@ import { useParams, Link, Redirect } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
-import StarRating from "../Reviews/StarRating";
-import RestaurantReviews from "../Reviews/RestaurantReviews";
+import StarRating from "../Reviews/StarRating/StarRating";
+import RestaurantReviews from "../Reviews/RestaurantReviews"
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
