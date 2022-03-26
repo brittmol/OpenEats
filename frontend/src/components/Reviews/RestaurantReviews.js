@@ -1,9 +1,11 @@
 import StarRating from "./StarRating";
+import ViewStarRating from "./ViewStarRating";
 
 export default function RestaurantReviews({ reviews }) {
   return (
     <>
       <h1>Reviews!</h1>
+      <ViewStarRating />
       <div>
         {reviews?.map((rev) => (
           <div key={rev?.id} style={{ padding: "10px" }}>
