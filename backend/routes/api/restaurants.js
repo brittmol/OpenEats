@@ -12,10 +12,37 @@ const {
 } = require("../../db/models");
 
 const { validateRestaurant } = require("../../utils/validation");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
 // ------------------ ROUTES ------------------------------------------
+
+// ------- SEARCH -----------------
+router.post(
+  "/search",
+  asyncHandler(async (req, res) => {
+    const { term } = req.body
+    const restaurants = await Restaurant.findAll({
+      where: {
+        title: {
+          [Op.iLike]: `%${term}%`,
+        },
+      },
+      include: [
+        {
+          model: User,
+        },
+        {
+          model: Category,
+        },
+      ],
+    });
+    return res.json(restaurants);
+  })
+);
+
+// ---------------------------------
 
 router.get(
   "/",

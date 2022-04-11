@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
-import StarRating from "../Reviews/StarRating/StarRating"
+import StarRating from "../Reviews/StarRating";
+import Search from "./Search";
 
 export default function AllRestaurants() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ export default function AllRestaurants() {
               Want to put your restaurant on OpenEats?
             </Link>
           </button>
+          <Search />
           {/* <input placeholder="*** This will be where you can search for reservation ***" />
           <input placeholder="Location, Restaurant, or Cuisine" />
           <button className="red">Let's go</button> */}
