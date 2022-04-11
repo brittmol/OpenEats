@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
-import { getRestaurants } from "../../store/restaurants";
+import { getRestaurants, updateRestaurant } from "../../store/restaurants";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating/StarRating";
-import RestaurantReviews from "../Reviews/RestaurantReviews"
+import RestaurantReviews from "../Reviews/RestaurantReviews";
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
@@ -16,10 +16,25 @@ export default function OneRestaurant() {
   const reviews = rest?.Reviews;
 
   const [loaded, setLoaded] = useState(false);
+  const [avgRating, setAvgRating] = useState(rest?.ratingOverall);
+
+  // const avgRating = Math.round(
+  //   overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+  // );
 
   useEffect(() => {
     dispatch(getRestaurants()).then(() => setLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
+    setAvgRating(
+      Math.round(
+        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+      )
+    );
+    dispatch(updateRestaurant({ ratingOverall: avgRating }));
+  }, [dispatch, reviews]);
 
   return (
     <>
@@ -51,7 +66,7 @@ export default function OneRestaurant() {
             ) : null}
             <div className="text">
               <div>{rest?.Category?.type}</div>
-              <StarRating />
+              <StarRating rating={avgRating} />
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
               <RestaurantReviews reviews={reviews} />
