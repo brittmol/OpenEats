@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/Auth-XXX-not-used/SignupFormPage";
-import LoginFormPage from "./components/Auth-XXX-not-used/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 // import { Modal } from "./context/Modal";
@@ -13,10 +11,11 @@ import ConfirmRes from "./components/Reservations/ConfirmRes";
 import UserReservations from "./components/User/UserReservations";
 import UserProfile from "./components/User/UserProfile";
 import EditResForm from "./components/Reservations/EditRes";
-import PageNotFound from "./components/PageNotFound/PageNotFound";
+import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OneRestaurant from "./components/Restaurants/OneRestaurant";
 import Footer from "./components/Footer";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);

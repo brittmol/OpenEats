@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Modal } from "../../context/Modal";
-import LoginForm from "../Auth/LoginFormModal/LoginForm";
-import SignupForm from "../Auth/SignupFormModal/SignupForm";
-import DemoUser from "../Auth/DemoUser";
-import DatePicker from "react-datepicker";
 import { createRes } from "../../store/reservations";
 import { getRestaurants } from "../../store/restaurants";
-
+import CheckLogin from "../Auth/CheckLogin";
+import { startDateValue } from "./functions";
+import DatePicker from "react-datepicker";
 import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-import setSeconds from "date-fns/setSeconds";
 import "react-datepicker/dist/react-datepicker.css";
 import "../Auth/Auth.css";
 
@@ -23,76 +18,36 @@ export default function CreateResForm({ restId, sessionUser }) {
     dispatch(getRestaurants());
   }, [dispatch]);
 
-  Date.prototype.addHours = function (h) {
-    this.setTime(this.getTime() + h * 60 * 60 * 1000);
-    return this;
-  };
-
-  const startDateValue = () => {
-    let today = new Date();
-    let tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-
-    let dateNextHr = setMinutes(setSeconds(today.addHours(1), 0), 0);
-    let dateNextDay = setHours(setMinutes(setSeconds(tomorrow, 0), 0), 9);
-    let dateThisDay = setHours(setMinutes(setSeconds(today, 0), 0), 9);
-
-    let startVal =
-      today.getHours() < 9
-        ? dateThisDay
-        : today.getHours() > 19
-        ? dateNextDay
-        : dateNextHr;
-    return startVal;
-  };
-
   const [time, setTime] = useState(startDateValue());
   const [numPpl, setNumPpl] = useState(2);
   const [specialReq, setSpecialReq] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const [showModal, setShowModal] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
-
-  // console.log("errors", errors);
-
-  useEffect(() => {
-    if (sessionUser) {
-      setShowModal(false);
-      const newErrors = errors.filter((e) => e !== "Unauthorized");
-      setErrors(newErrors);
-      history.push(`/restaurants/${restId}`);
-    }
-  }, [sessionUser, history, restId]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (sessionUser) {
+      const payload = {
+        userId: sessionUser?.id,
+        restaurantId: restId,
+        time,
+        numPpl,
+        specialReq,
+      };
 
-    // sessionUser ? setShowModal(true) : setShowModal(false);
-    if (!sessionUser) {
-      setShowModal(true);
+      setErrors([]);
+      const newRes = await dispatch(createRes(payload)).catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) return setErrors(data.errors);
+      });
+
+      if (newRes) {
+        setTime(startDateValue());
+        setNumPpl(2);
+        setSpecialReq("");
+        return history.push(`/reservations/${newRes.id}/confirmation`);
+      }
     }
-
-    const payload = {
-      userId: sessionUser?.id,
-      restaurantId: restId,
-      time,
-      numPpl,
-      specialReq,
-    };
-
-    setErrors([]);
-    const newRes = await dispatch(createRes(payload)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) return setErrors(data.errors);
-    });
-
-    if (newRes) {
-      setTime(startDateValue());
-      setNumPpl(2);
-      setSpecialReq("");
-      return history.push(`/reservations/${newRes.id}/confirmation`);
-    }
+    return setErrors(["Please log in to reserve a table."]);
   };
 
   return (
@@ -103,46 +58,12 @@ export default function CreateResForm({ restId, sessionUser }) {
           {errors.map((error, idx) => (
             <li key={idx} className="errors">
               {error}
+              {error === "Please log in to reserve a table." ? (
+                <CheckLogin />
+              ) : null}
             </li>
           ))}
         </ul>
-        <div>
-          {showModal && (
-            <Modal onClose={() => setShowModal(false)}>
-              {showLogin ? (
-                <>
-                  <LoginForm />
-                  <p className="modal-form-p">
-                    Don't have an account?
-                    <button
-                      className="red-font-btn"
-                      onClick={() => setShowLogin(false)}
-                    >
-                      Sign Up
-                    </button>
-                  </p>
-                </>
-              ) : (
-                <>
-                  <SignupForm />
-                  <p className="modal-form-p">
-                    Already have an account?
-                    <button
-                      className="red-font-btn"
-                      onClick={() => setShowLogin(true)}
-                    >
-                      Log In
-                    </button>
-                  </p>
-                </>
-              )}
-              <p className="modal-form-p">
-                Want to login as a Guest?
-                <DemoUser />
-              </p>
-            </Modal>
-          )}
-        </div>
         <DatePicker
           placeholderText="Click to select a Date"
           selected={time}

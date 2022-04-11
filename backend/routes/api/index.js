@@ -5,6 +5,7 @@ const usersRouter = require("./users.js");
 const categoriesRouter = require("./categories.js");
 const restaurantsRouter = require("./restaurants.js");
 const reservationsRouter = require("./reservations.js");
+const reviewsRouter = require("./reviews.js");
 
 // router.post("/test", function (req, res) {
 //   res.json({ requestBody: req.body });
@@ -16,6 +17,7 @@ router.use("/users", usersRouter);
 router.use("/categories", categoriesRouter);
 router.use("/restaurants", restaurantsRouter);
 router.use("/reservations", reservationsRouter);
+router.use("/reviews", reviewsRouter);
 
 // ------------------ EXPORTS ------------------------------------------
 module.exports = router;

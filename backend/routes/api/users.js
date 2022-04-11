@@ -39,11 +39,26 @@ router.post(
 
 // User Profile Routes
 router.get(
-  "/:id/profile",
+  "/:id",
   requireAuth,
   asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const user = await User.findByPk(id);
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: Restaurant,
+          include: [Category],
+        },
+        {
+          model: Reservation,
+          include: [User, Restaurant],
+        },
+        {
+          model: Review,
+          include: [User, Restaurant],
+        },
+      ],
+    });
     return res.json(user);
   })
 );
@@ -58,6 +73,19 @@ router.get(
       include: [{ model: User }, { model: Restaurant }],
     });
     return res.json(reservations);
+  })
+);
+
+router.get(
+  "/:id/reviews",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const reviews = await Review.findAll({
+      where: { userId: id },
+      include: [{ model: User }, { model: Restaurant }],
+    });
+    return res.json(reviews);
   })
 );
 

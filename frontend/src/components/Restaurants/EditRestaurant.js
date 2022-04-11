@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import {
   updateRestaurant,
   removeRestaurant,
@@ -15,13 +15,17 @@ export default function EditRestaurantForm() {
   const { restId } = useParams();
 
   const sessionUser = useSelector((store) => store.session.user);
-  const restaurants = useSelector((store) => store.restaurantReducer);
-  const rest = restaurants[restId];
+  const rest = useSelector((store) => store.restaurantReducer[restId]);
 
   const categories = useSelector((store) => store.categoryReducer);
   const categoriesArr = Object.values(categories);
 
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    dispatch(getRestaurants()).then(() => setLoaded(true));
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
@@ -32,19 +36,6 @@ export default function EditRestaurantForm() {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [errors, setErrors] = useState([]);
-
-  useEffect(() => {
-    dispatch(getRestaurants()).then(() => setLoaded(true));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (loaded && rest?.ownerId !== sessionUser?.id)
-      history.push(`/restaurants/${rest?.id}`);
-  }, [loaded, rest, sessionUser, history]);
 
   useEffect(() => {
     if (rest) {
@@ -87,6 +78,12 @@ export default function EditRestaurantForm() {
 
   return (
     <>
+      {loaded && !rest ? (
+        <Redirect to={`/restaurants/${restId}/page-not-found`} />
+      ) : null}
+      {rest && rest?.ownerId !== sessionUser?.id ? (
+        <Redirect to={`/restaurants/${restId}`} />
+      ) : null}
       <form onSubmit={handleSubmit} className="rest-form">
         <h1>Update Restaurant</h1>
         <ul>
@@ -151,8 +148,11 @@ export default function EditRestaurantForm() {
           value={zipCode}
           onChange={(e) => setZipCode(e.target.value)}
         />
-        <button type="submit" className="red-btn">Update Restaurant</button>
-        <button className="red-btn"
+        <button type="submit" className="red-btn">
+          Update Restaurant
+        </button>
+        <button
+          className="red-btn"
           onClick={() => {
             setCategory(rest?.categoryId);
             setTitle(rest?.title);
@@ -167,7 +167,8 @@ export default function EditRestaurantForm() {
         >
           Cancel
         </button>
-        <button className="red-btn"
+        <button
+          className="red-btn"
           onClick={() => {
             if (
               window.confirm(

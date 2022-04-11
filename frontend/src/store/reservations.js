@@ -31,6 +31,7 @@ export const getReservations = (userId) => async (dispatch) => {
   if (response.ok) {
     const reservations = await response.json();
     dispatch(loadRes(reservations));
+    return reservations;
   }
 };
 

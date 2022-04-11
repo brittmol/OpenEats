@@ -9,12 +9,12 @@ import Search from "./Search";
 export default function AllRestaurants() {
   const dispatch = useDispatch();
 
+  const restaurants = useSelector((store) => store.restaurantReducer);
+  const restArray = Object.values(restaurants);
+
   useEffect(() => {
     dispatch(getRestaurants());
   }, [dispatch]);
-
-  const restaurants = useSelector((store) => store.restaurantReducer);
-  const restArray = Object.values(restaurants);
 
   return (
     <>
