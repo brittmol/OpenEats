@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
-import StarRating from "../Reviews/StarRating";
+import StarRating from "../Reviews/StarRating/StarRating";
 import Search from "./Search";
 
 export default function AllRestaurants() {
@@ -11,6 +11,17 @@ export default function AllRestaurants() {
 
   const restaurants = useSelector((store) => store.restaurantReducer);
   const restArray = Object.values(restaurants);
+
+  const avgRating = (rest) => {
+    const reviews = rest?.Reviews;
+    if (reviews?.length) {
+      const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
+      const avg = Math.round(
+        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+      );
+      return avg;
+    }
+  };
 
   useEffect(() => {
     dispatch(getRestaurants());
@@ -54,7 +65,7 @@ export default function AllRestaurants() {
                 </div>
                 <div className="rest-card-text">
                   <div className="title">{rest?.title}</div>
-                  <StarRating rating={rest?.ratingOverall} />
+                  <StarRating rating={avgRating(rest)} />
                   <div>{rest?.Category?.type}</div>
                   <div>
                     {rest?.city}, {rest?.state}

@@ -15,26 +15,32 @@ export default function OneRestaurant() {
   const rest = useSelector((store) => store.restaurantReducer[restId]);
   const reviews = rest?.Reviews;
 
-  const [loaded, setLoaded] = useState(false);
-  const [avgRating, setAvgRating] = useState(rest?.ratingOverall);
+  const avgRating = (rest) => {
+    if (reviews?.length) {
+      const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
+      const avg = Math.round(overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length)
+      return avg
+    }
+  }
 
-  // const avgRating = Math.round(
-  //   overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
-  // );
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(getRestaurants()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-    setAvgRating(
-      Math.round(
-        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
-      )
-    );
-    dispatch(updateRestaurant({ ratingOverall: avgRating }));
-  }, [dispatch, reviews]);
+  // const [avgRating, setAvgRating] = useState(rest?.ratingOverall);
+  // useEffect(() => {
+  //   if (reviews?.length) {
+  //     const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
+  //     setAvgRating(
+  //       Math.round(
+  //         overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+  //       )
+  //     );
+  //     // dispatch(updateRestaurant({ ratingOverall: avgRating }));
+  //   }
+  // }, [dispatch, reviews, avgRating]);
 
   return (
     <>
@@ -66,7 +72,7 @@ export default function OneRestaurant() {
             ) : null}
             <div className="text">
               <div>{rest?.Category?.type}</div>
-              <StarRating rating={avgRating} />
+              <StarRating rating={avgRating(rest)} />
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
               <RestaurantReviews reviews={reviews} />
