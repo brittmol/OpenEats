@@ -8,10 +8,10 @@ export default function EditReviewForm({ restId, rev, sessionUser }) {
   const dispatch = useDispatch();
 
   const [comment, setComment] = useState("");
-  const [ratingOverall, setRatingOverall] = useState(0);
-  const [ratingFood, setRatingFood] = useState(0);
-  const [ratingService, setRatingService] = useState(0);
-  const [ratingAmbience, setRatingAmbience] = useState(0);
+  const [ratingOverall, setRatingOverall] = useState(null);
+  const [ratingFood, setRatingFood] = useState(null);
+  const [ratingService, setRatingService] = useState(null);
+  const [ratingAmbience, setRatingAmbience] = useState(null);
   const [errors, setErrors] = useState([]);
   const [inEditMode, setInEditMode] = useState(false);
 

@@ -9,10 +9,10 @@ export default function CreateReviewForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
 
   const [comment, setComment] = useState("");
-  const [ratingOverall, setRatingOverall] = useState(0);
-  const [ratingFood, setRatingFood] = useState(0);
-  const [ratingService, setRatingService] = useState(0);
-  const [ratingAmbience, setRatingAmbience] = useState(0);
+  const [ratingOverall, setRatingOverall] = useState(null);
+  const [ratingFood, setRatingFood] = useState(null);
+  const [ratingService, setRatingService] = useState(null);
+  const [ratingAmbience, setRatingAmbience] = useState(null);
   const [errors, setErrors] = useState([]);
 
   const [inCreateMode, setInCreateMode] = useState(false);
@@ -20,10 +20,10 @@ export default function CreateReviewForm({ restId, sessionUser }) {
   const onCancel = () => {
     setInCreateMode(false);
     setComment("");
-    setRatingOverall(0);
-    setRatingFood(0);
-    setRatingService(0);
-    setRatingAmbience(0);
+    setRatingOverall(null);
+    setRatingFood(null);
+    setRatingService(null);
+    setRatingAmbience(null);
     setErrors([]);
   };
 
@@ -48,10 +48,10 @@ export default function CreateReviewForm({ restId, sessionUser }) {
     if (newRev) {
       setInCreateMode(false);
       setComment("");
-      setRatingOverall(0);
-      setRatingFood(0);
-      setRatingService(0);
-      setRatingAmbience(0);
+      setRatingOverall(null);
+      setRatingFood(null);
+      setRatingService(null);
+      setRatingAmbience(null);
     }
   };
 
