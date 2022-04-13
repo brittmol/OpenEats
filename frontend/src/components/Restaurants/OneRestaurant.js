@@ -84,7 +84,7 @@ export default function OneRestaurant() {
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
               <CreateReviewForm restId={restId} sessionUser={sessionUser} />
-              <RestaurantReviews reviews={reviews} />
+              <RestaurantReviews restId={restId} reviews={reviews} sessionUser={sessionUser} />
             </div>
           </div>
           <div className="right-panel">

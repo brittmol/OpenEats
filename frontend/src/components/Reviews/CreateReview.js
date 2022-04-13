@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { createRev } from "../../store/reviews";
-import { getRestaurants } from "../../store/restaurants";
 import LoginFormModal from "../Auth/LoginFormModal";
 import CreateStarRating from "./StarRating/CreateStarRating";
 import "../Auth/Auth.css";
 
 export default function CreateReviewForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   //   useEffect(() => {
   //     dispatch(getRestaurants());
@@ -23,9 +20,7 @@ export default function CreateReviewForm({ restId, sessionUser }) {
   const [errors, setErrors] = useState([]);
 
   const [inCreateMode, setInCreateMode] = useState(false);
-  const onCreate = () => {
-    setInCreateMode(true);
-  };
+  const onCreate = () => setInCreateMode(true);
   const onCancel = () => {
     setInCreateMode(false);
     setComment("");
