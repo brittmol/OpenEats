@@ -127,6 +127,7 @@ export default function EditResForm() {
             setTime(new Date(res?.time));
             setNumPpl(res?.numPpl);
             setSpecialReq(res?.specialReq);
+            setErrors([]);
             history.push(`/users/${sessionUser?.id}/reservations`);
           }}
         >

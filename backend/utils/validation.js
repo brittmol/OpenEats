@@ -121,20 +121,17 @@ const validateReview = [
     .exists({ checkFalsy: true })
     .withMessage("Please provide a review of this restaurant."),
   check("ratingOverall")
-    .isNumeric()
-    .isLength({ min: 1, max: 5 })
+    .isFloat({ min: 1, max: 5 })
+    // .isInt({ min: 1, max: 5 })
     .withMessage("Please rate your overall experience from 1 to 5"),
   check("ratingFood")
-    .isNumeric()
-    .isLength({ min: 1, max: 5 })
+    .isFloat({ min: 1, max: 5 })
     .withMessage("Please rate the restaurant's food from 1 to 5"),
   check("ratingService")
-    .isNumeric()
-    .isLength({ min: 1, max: 5 })
+    .isFloat({ min: 1, max: 5 })
     .withMessage("Please rate the restaurant's service from 1 to 5"),
   check("ratingAmbience")
-    .isNumeric()
-    .isLength({ min: 1, max: 5 })
+    .isFloat({ min: 1, max: 5 })
     .withMessage("Please rate the restaurant's ambience from 1 to 5"),
   handleValidationErrors,
 ];

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./StarRating.css";
 
 export default function StarRating({ rating }) {
-  
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, i) => {
