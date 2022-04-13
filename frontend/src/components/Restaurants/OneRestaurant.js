@@ -5,9 +5,10 @@ import { getRestaurants } from "../../store/restaurants";
 import { getRestReviews } from "../../store/reviews";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
-import StarRating from "../Reviews/StarRating/StarRating";
 import RestaurantReviews from "../Reviews/RestaurantReviews";
 import CreateReviewForm from "../Reviews/CreateReview";
+import StarRating from "../Reviews/StarRating/StarRating";
+import { avgRatings } from "./EditRatings";
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
@@ -19,35 +20,18 @@ export default function OneRestaurant() {
     Object.values(store.reviewReducer).reverse()
   );
 
-  const avgRating = (rest) => {
-    if (reviews?.length) {
-      const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-      const avg = Math.round(
-        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
-      );
-      return avg;
-    }
-  };
-
   const [loaded, setLoaded] = useState(false);
+  const [rating, setRating] = useState(avgRatings(rest));
+  console.log("rating", rating);
+  console.log("avg rat", avgRatings(rest));
 
   useEffect(() => {
-    dispatch(getRestaurants()).then(() => setLoaded(true));
+    dispatch(getRestaurants()).then(() => {
+      setLoaded(true);
+      setRating(avgRatings(rest));
+    });
     dispatch(getRestReviews(restId));
   }, [dispatch, restId]);
-
-  // const [avgRating, setAvgRating] = useState(rest?.ratingOverall);
-  // useEffect(() => {
-  //   if (reviews?.length) {
-  //     const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-  //     setAvgRating(
-  //       Math.round(
-  //         overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
-  //       )
-  //     );
-  //     // dispatch(updateRestaurant({ ratingOverall: avgRating }));
-  //   }
-  // }, [dispatch, reviews, avgRating]);
 
   return (
     <>
@@ -79,9 +63,14 @@ export default function OneRestaurant() {
             ) : null}
             <div className="text">
               <div>{rest?.Category?.type}</div>
-              <StarRating rating={avgRating(rest)} />
+              <div>
+                <StarRating rating={avgRatings(rest)} />
+                Avg Rating: {avgRatings(rest)}
+              </div>
+              {/* <br /> */}
+              <br />
+              {/* <br /> */}
               <div>{rest?.description}</div>
-              {/* <div>Reviews:</div> */}
               <CreateReviewForm restId={restId} sessionUser={sessionUser} />
               <RestaurantReviews
                 restId={restId}
