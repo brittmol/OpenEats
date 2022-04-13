@@ -22,7 +22,7 @@ const router = express.Router();
 router.post(
   "/search",
   asyncHandler(async (req, res) => {
-    const { term } = req.body
+    const { term } = req.body;
     const restaurants = await Restaurant.findAll({
       where: {
         title: {
@@ -44,6 +44,33 @@ router.post(
 
 // ---------------------------------
 
+// Restaurant Reservations & Reviews
+router.get(
+  "/:id/reservations",
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const reservations = await Reservation.findAll({
+      where: { restaurantId: id },
+      include: [{ model: User }, { model: Restaurant }],
+    });
+    return res.json(reservations);
+  })
+);
+
+router.get(
+  "/:id/reviews",
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const reviews = await Review.findAll({
+      where: { restaurantId: id },
+      include: [{ model: User }, { model: Restaurant }],
+    });
+    return res.json(reviews);
+  })
+);
+
+// All other
 router.get(
   "/",
   asyncHandler(async (req, res) => {

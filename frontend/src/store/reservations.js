@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 /* ----- ACTIONS ------ */
 const LOAD_USER_RESERVATIONS = "reservations/LOAD_USER_RESERVATIONS";
-export const loadRes = (reservations) => {
+export const loadUserRes = (reservations) => {
   return {
     type: LOAD_USER_RESERVATIONS,
     reservations,
@@ -30,7 +30,7 @@ export const getUserReservations = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}/reservations`);
   if (response.ok) {
     const reservations = await response.json();
-    dispatch(loadRes(reservations));
+    dispatch(loadUserRes(reservations));
     return reservations;
   }
 };

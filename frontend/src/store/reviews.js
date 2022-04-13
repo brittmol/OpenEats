@@ -1,10 +1,18 @@
 import { csrfFetch } from "./csrf";
 
 /* ----- ACTIONS ------ */
-const LOAD_REVIEWS = "reviews/LOAD_REVIEWS";
-export const loadRev = (reviews) => {
+const LOAD_USER_REVIEWS = "reviews/LOAD_USER_REVIEWS";
+export const loadUserRev = (reviews) => {
   return {
-    type: LOAD_REVIEWS,
+    type: LOAD_USER_REVIEWS,
+    reviews,
+  };
+};
+
+const LOAD_REST_REVIEWS = "reviews/LOAD_REST_REVIEWS";
+export const loadRestRev = (reviews) => {
+  return {
+    type: LOAD_REST_REVIEWS,
     reviews,
   };
 };
@@ -26,11 +34,20 @@ export const deleteRev = (rev) => {
 };
 
 /* ----- THUNK ------ (communicates to backend api and retrieves it) */
-export const getReviews = (userId) => async (dispatch) => {
+export const getUserReviews = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}/reviews`);
   if (response.ok) {
     const reviews = await response.json();
-    dispatch(loadRev(reviews));
+    dispatch(loadUserRev(reviews));
+    return reviews;
+  }
+};
+
+export const getRestReviews = (restId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/restaurants/${restId}/reviews`);
+  if (response.ok) {
+    const reviews = await response.json();
+    dispatch(loadRestRev(reviews));
     return reviews;
   }
 };
@@ -96,7 +113,13 @@ export const removeRev = (payload) => async (dispatch) => {
 export default function reviewReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
-    case LOAD_REVIEWS: {
+    case LOAD_USER_REVIEWS: {
+      action.reviews.forEach((rev) => {
+        newState[rev.id] = rev;
+      });
+      return newState;
+    }
+    case LOAD_REST_REVIEWS: {
       action.reviews.forEach((rev) => {
         newState[rev.id] = rev;
       });
