@@ -4,7 +4,6 @@ import EditReviewForm from "./EditReview";
 export default function RestaurantReviews({ restId, reviews, sessionUser }) {
   return (
     <>
-      <h1>Reviews!</h1>
       <div>
         {reviews?.map((rev) => (
           <div key={rev?.id} style={{ padding: "10px" }}>

@@ -81,9 +81,20 @@ export default function OneRestaurant() {
             <div className="text">
               <div>{rest?.Category?.type}</div>
               <StarRating rating={avgRating(rest)} />
-              Avg Rating: {avgRating(rest)}
+              {reviews.length === 1
+                ? `Avg Rating: (1), 1 review`
+                : reviews.length
+                ? `Avg Rating: (${avgRating(rest)}), ${reviews.length} reviews`
+                : "No Reviews Yet"}
+              <br />
+              <br />
+              {/* <br /> */}
               <div>{rest?.description}</div>
-              {/* <div>Reviews:</div> */}
+              {reviews.length ? (
+                <h1>Reviews!</h1>
+              ) : (
+                <h1>Be the first to review!</h1>
+              )}
               <CreateReviewForm restId={restId} sessionUser={sessionUser} />
               <RestaurantReviews
                 restId={restId}
