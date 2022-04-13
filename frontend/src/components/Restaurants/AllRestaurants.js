@@ -5,18 +5,22 @@ import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating/StarRating";
 import Search from "./Search";
+import LoginFormModal from "../Auth/LoginFormModal";
 
 export default function AllRestaurants() {
   const dispatch = useDispatch();
 
   const restaurants = useSelector((store) => store.restaurantReducer);
   const restArray = Object.values(restaurants);
+  const sessionUser = useSelector((store) => store.session.user);
 
   const avgRating = (rest) => {
     const reviews = rest?.Reviews;
     if (reviews?.length) {
       const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-      const avg = (overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length).toFixed(1)
+      const avg = (
+        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+      ).toFixed(1);
       return avg;
     }
   };
@@ -34,11 +38,16 @@ export default function AllRestaurants() {
             Reserve a table at one of our restaurants or add a restaurant on our
             site!
           </p>
-          <button className="red-btn">
-            <Link to="/create-restaurant">
+          {!sessionUser ? (
+            <p>
               Want to put your restaurant on OpenEats?
-            </Link>
-          </button>
+              <LoginFormModal btnName={"Log in here!"} />
+            </p>
+          ) : (
+            <button className="red-btn">
+              <Link to="/create-restaurant">Add a Restaurant!</Link>
+            </button>
+          )}
           <Search />
           {/* <input placeholder="*** This will be where you can search for reservation ***" />
           <input placeholder="Location, Restaurant, or Cuisine" />

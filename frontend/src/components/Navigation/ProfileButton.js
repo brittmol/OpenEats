@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     // if url is /restaurants/:restId then history.push there
     // else:
-    history.push("/");
+    // history.push("/");
     dispatch(sessionActions.logout());
   };
 
