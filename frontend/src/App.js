@@ -15,6 +15,7 @@ import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import OneRestaurant from "./components/Restaurants/OneRestaurant";
 import Footer from "./components/Footer";
+import SearchResult from "./components/Search/SearchResult";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <AllRestaurants />
+            </Route>
+            <Route path='/search'>
+              <SearchResult />
             </Route>
             <Route exact path="/restaurants/:restId">
               <OneRestaurant />

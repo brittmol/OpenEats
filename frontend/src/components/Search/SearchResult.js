@@ -1,19 +1,20 @@
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
-import "./Restaurants.css";
+import Search from ".";
 import StarRating from "../Reviews/StarRating/StarRating";
-import Search from "../Search"
 
-import LoginFormModal from "../Auth/LoginFormModal";
-
-export default function AllRestaurants() {
+export default function SearchResult() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const restaurants = useSelector((store) => store.restaurantReducer);
   const restArray = Object.values(restaurants);
-  const sessionUser = useSelector((store) => store.session.user);
+
+  useEffect(() => {
+    dispatch(getRestaurants());
+  }, [dispatch]);
 
   const avgRating = (rest) => {
     const reviews = rest?.Reviews;
@@ -26,34 +27,30 @@ export default function AllRestaurants() {
     }
   };
 
-  useEffect(() => {
-    dispatch(getRestaurants());
-  }, [dispatch]);
+  const searchValue = location.state?.detail // || url string ;
+
+  console.log("searchValue", location.state);
+  let searchArr = restArray?.filter((rest) => {
+    return (
+      rest?.title?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      rest?.Category?.type?.toLowerCase().includes(searchValue.toLowerCase()) ||
+      rest?.city?.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  });
+
+  console.log("searchArr", searchValue, searchArr);
 
   return (
     <>
       <div className="home-search-res">
-        <h1>Find your table for any occasion</h1>
         <div className="search-bar">
-          <p>
-            Reserve a table at one of our restaurants or add a restaurant on our
-            site!
-          </p>
-          {!sessionUser ? (
-            <p>
-              Want to put your restaurant on OpenEats?
-              <LoginFormModal btnName={"Log in here!"} />
-            </p>
-          ) : (
-            <button className="red-btn">
-              <Link to="/create-restaurant">Add a Restaurant!</Link>
-            </button>
-          )}
           <Search />
+          <p>{searchArr.length} Restaurants Found</p>
         </div>
       </div>
-      <div className="all-rest-cards">
-        {restArray?.map((rest) => (
+      <div>
+        {!searchArr.length && <h1>No Restaurants Found</h1>}
+        {searchArr?.map((rest) => (
           <div key={rest?.id}>
             <Link to={`/restaurants/${rest?.id}`}>
               <div className="rest-card">
