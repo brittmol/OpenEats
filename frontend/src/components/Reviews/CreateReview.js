@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createRev } from "../../store/reviews";
 import LoginFormModal from "../Auth/LoginFormModal";
@@ -7,10 +7,6 @@ import "../Auth/Auth.css";
 
 export default function CreateReviewForm({ restId, sessionUser }) {
   const dispatch = useDispatch();
-
-  //   useEffect(() => {
-  //     dispatch(getRestaurants());
-  //   }, [dispatch]);
 
   const [comment, setComment] = useState("");
   const [ratingOverall, setRatingOverall] = useState(0);
@@ -28,6 +24,7 @@ export default function CreateReviewForm({ restId, sessionUser }) {
     setRatingFood(0);
     setRatingService(0);
     setRatingAmbience(0);
+    setErrors([]);
   };
 
   const handleSubmit = async (e) => {

@@ -162,6 +162,7 @@ export default function EditRestaurantForm() {
             setCity(rest?.city);
             setState(rest?.state);
             setZipCode(rest?.zipCode);
+            setErrors([]);
             history.push(`/restaurants/${restId}`);
           }}
         >

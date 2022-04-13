@@ -4,13 +4,7 @@ import { removeRev, updateRev } from "../../store/reviews";
 import CreateStarRating from "./StarRating/CreateStarRating";
 import StarRating from "./StarRating/StarRating";
 
-export default function EditReviewForm({
-  restId,
-  rev,
-  sessionUser,
-  inEditMode,
-  setInEditMode,
-}) {
+export default function EditReviewForm({ restId, rev, sessionUser }) {
   const dispatch = useDispatch();
 
   const [comment, setComment] = useState("");
@@ -19,20 +13,33 @@ export default function EditReviewForm({
   const [ratingService, setRatingService] = useState(0);
   const [ratingAmbience, setRatingAmbience] = useState(0);
   const [errors, setErrors] = useState([]);
+  const [inEditMode, setInEditMode] = useState(false);
+
+  useEffect(() => {
+    if (rev) {
+      setComment(rev?.comment);
+      setRatingOverall(rev?.ratingOverall);
+      setRatingFood(rev?.ratingFood);
+      setRatingService(rev?.ratingService);
+      setRatingAmbience(rev?.ratingAmbience);
+    }
+  }, [rev]);
 
   const onEdit = () => setInEditMode(true);
   const onCancel = () => {
     setInEditMode(false);
-    setComment("");
-    setRatingOverall(0);
-    setRatingFood(0);
-    setRatingService(0);
-    setRatingAmbience(0);
+    setComment(rev?.comment);
+    setRatingOverall(rev?.ratingOverall);
+    setRatingFood(rev?.ratingFood);
+    setRatingService(rev?.ratingService);
+    setRatingAmbience(rev?.ratingAmbience);
+    setErrors([]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
+      id: rev?.id,
       userId: sessionUser?.id,
       restaurantId: restId,
       comment,
@@ -50,11 +57,11 @@ export default function EditReviewForm({
 
     if (updatedRev) {
       setInEditMode(false);
-      setComment("");
-      setRatingOverall(0);
-      setRatingFood(0);
-      setRatingService(0);
-      setRatingAmbience(0);
+      setComment(updatedRev?.comment);
+      setRatingOverall(updatedRev?.ratingOverall);
+      setRatingFood(updatedRev?.ratingFood);
+      setRatingService(updatedRev?.ratingService);
+      setRatingAmbience(updatedRev?.ratingAmbience);
     }
   };
 
@@ -98,27 +105,34 @@ export default function EditReviewForm({
             />
           </div>
           <button type="submit" className="red-btn">
-            Submit Review!
+            Edit Review!
           </button>
           <button onClick={() => onCancel()}>Cancel</button>
         </form>
       ) : (
         <>
-          <div>
-              User: {rev?.User?.username}
-            <button onClick={() => onEdit()} className="red-btn">
-                Edit
-            </button>
-            <button onClick={() => onEdit()} className="red-btn">
-                Delete
-            </button>
-          </div>
-          <div>Comment: {rev?.comment}</div>
+          <div>User: {rev?.User?.username}</div>
           <StarRating rating={rev?.ratingOverall} />
           <div>Rating Overall: {rev?.ratingOverall}</div>
           <div>Food: {rev?.ratingFood}</div>
           <div>Service: {rev?.ratingService}</div>
           <div>Ambience: {rev?.ratingAmbience}</div>
+          <div>Comment: {rev?.comment}</div>
+          <button onClick={() => onEdit()} className="red-btn">
+            Edit
+          </button>
+          <button
+            className="red-btn"
+            onClick={() => {
+              if (
+                window.confirm(`Are you sure you want to remove this review?`)
+              ) {
+                dispatch(removeRev(rev));
+              }
+            }}
+          >
+            Delete
+          </button>
         </>
       )}
     </>

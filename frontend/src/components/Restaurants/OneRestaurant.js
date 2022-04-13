@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
-import { getRestaurants, updateRestaurant } from "../../store/restaurants";
+import { getRestaurants } from "../../store/restaurants";
 import { getRestReviews } from "../../store/reviews";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
@@ -15,10 +15,9 @@ export default function OneRestaurant() {
 
   const sessionUser = useSelector((store) => store.session.user);
   const rest = useSelector((store) => store.restaurantReducer[restId]);
-  const reviews = useSelector((store) => Object.values(store.reviewReducer).reverse());
-  console.log("my reviews", reviews);
-
-  // const reviews = rest?.Reviews;
+  const reviews = useSelector((store) =>
+    Object.values(store.reviewReducer).reverse()
+  );
 
   const avgRating = (rest) => {
     if (reviews?.length) {
@@ -35,7 +34,7 @@ export default function OneRestaurant() {
   useEffect(() => {
     dispatch(getRestaurants()).then(() => setLoaded(true));
     dispatch(getRestReviews(restId));
-  }, [dispatch]);
+  }, [dispatch, restId]);
 
   // const [avgRating, setAvgRating] = useState(rest?.ratingOverall);
   // useEffect(() => {
@@ -84,7 +83,11 @@ export default function OneRestaurant() {
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
               <CreateReviewForm restId={restId} sessionUser={sessionUser} />
-              <RestaurantReviews restId={restId} reviews={reviews} sessionUser={sessionUser} />
+              <RestaurantReviews
+                restId={restId}
+                reviews={reviews}
+                sessionUser={sessionUser}
+              />
             </div>
           </div>
           <div className="right-panel">
