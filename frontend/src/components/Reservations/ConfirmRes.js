@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, Redirect } from "react-router-dom";
-import { getReservations } from "../../store/reservations";
+import { getUserReservations } from "../../store/reservations";
 import { date, time } from "./functions";
 
 export default function ConfirmRes() {
@@ -12,7 +12,7 @@ export default function ConfirmRes() {
   const res = useSelector((store) => store.reservationReducer[resId]);
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser?.id));
+    dispatch(getUserReservations(sessionUser?.id));
   }, [dispatch, sessionUser]);
 
   return (

@@ -1,10 +1,10 @@
 import { csrfFetch } from "./csrf";
 
 /* ----- ACTIONS ------ */
-const LOAD_RESERVATIONS = "reservations/LOAD_RESERVATIONS";
+const LOAD_USER_RESERVATIONS = "reservations/LOAD_USER_RESERVATIONS";
 export const loadRes = (reservations) => {
   return {
-    type: LOAD_RESERVATIONS,
+    type: LOAD_USER_RESERVATIONS,
     reservations,
   };
 };
@@ -26,7 +26,7 @@ export const deleteRes = (res) => {
 };
 
 /* ----- THUNK ------ (communicates to backend api and retrieves it) */
-export const getReservations = (userId) => async (dispatch) => {
+export const getUserReservations = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}/reservations`);
   if (response.ok) {
     const reservations = await response.json();
@@ -96,7 +96,7 @@ export const removeRes = (payload) => async (dispatch) => {
 export default function reservationReducer(state = {}, action) {
   let newState = {};
   switch (action.type) {
-    case LOAD_RESERVATIONS: {
+    case LOAD_USER_RESERVATIONS: {
       action.reservations.forEach((res) => {
         newState[res.id] = res;
       });

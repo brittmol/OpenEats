@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { getReservations, removeRes } from "../../store/reservations";
+import { getUserReservations, removeRes } from "../../store/reservations";
 import { date, time } from "../Reservations/functions";
 import "./User.css";
 
@@ -21,7 +21,7 @@ export default function UserReservations() {
   }, [sessionUser, history, userId]);
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser?.id));
+    dispatch(getUserReservations(sessionUser?.id));
   }, [dispatch, sessionUser]);
 
   return (

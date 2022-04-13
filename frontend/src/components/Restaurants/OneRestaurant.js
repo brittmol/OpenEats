@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
 import { getRestaurants, updateRestaurant } from "../../store/restaurants";
+import { getReviews } from "../../store/reviews";
 import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating/StarRating";
@@ -14,6 +15,9 @@ export default function OneRestaurant() {
 
   const sessionUser = useSelector((store) => store.session.user);
   const rest = useSelector((store) => store.restaurantReducer[restId]);
+  const allReviews = useSelector((store) => store.reviewReducer);
+  console.log("my reviews", allReviews);
+
   const reviews = rest?.Reviews;
 
   const avgRating = (rest) => {
@@ -30,6 +34,7 @@ export default function OneRestaurant() {
 
   useEffect(() => {
     dispatch(getRestaurants()).then(() => setLoaded(true));
+    dispatch(getReviews(sessionUser?.id));
   }, [dispatch]);
 
   // const [avgRating, setAvgRating] = useState(rest?.ratingOverall);

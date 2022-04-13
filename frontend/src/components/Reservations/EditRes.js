@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 import {
-  getReservations,
+  getUserReservations,
   updateRes,
   removeRes,
 } from "../../store/reservations";
@@ -20,7 +20,7 @@ export default function EditResForm() {
   const res = useSelector((store) => store.reservationReducer[resId]);
 
   useEffect(() => {
-    dispatch(getReservations(sessionUser?.id));
+    dispatch(getUserReservations(sessionUser?.id));
   }, [dispatch, sessionUser]);
 
   const [time, setTime] = useState(null);
