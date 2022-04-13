@@ -27,7 +27,8 @@ export default function SearchResult() {
     }
   };
 
-  const searchValue = location.state?.detail // || url string ;
+  let val = location.search.split("?query=")[1]; // || url string ;
+  const searchValue = location.state?.detail || val;
 
   console.log("searchValue", location.state);
   let searchArr = restArray?.filter((rest) => {
@@ -49,7 +50,7 @@ export default function SearchResult() {
         </div>
       </div>
       <div>
-        {!searchArr.length && <h1>No Restaurants Found</h1>}
+        {!searchArr.length && <h1>No Restaurants Found for {searchValue}</h1>}
         {searchArr?.map((rest) => (
           <div key={rest?.id}>
             <Link to={`/restaurants/${rest?.id}`}>

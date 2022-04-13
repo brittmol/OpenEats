@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 export default function Search() {
-  const [searchValue, setSearchValue] = useState("");
   const history = useHistory();
+  const location = useLocation();
+  let val = location.search.split("?query=")[1];
+
+  const [searchValue, setSearchValue] = useState(val || "");
 
   const handleSearch = (e) => {
     e.preventDefault();
