@@ -5,13 +5,13 @@ import SignupForm from "../SignupFormModal/SignupForm";
 import LoginForm from "./LoginForm";
 import "../Auth.css";
 
-function LoginFormModal() {
+function LoginFormModal({btnName}) {
   const [showModal, setShowModal] = useState(false);
   const [showLogin, setShowLogin] = useState(true);
 
   return (
     <>
-      <button className="red-btn" onClick={() => setShowModal(true)}>Log In</button>
+      <button className="red-btn" onClick={() => setShowModal(true)}>{btnName}</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           {showLogin ? (

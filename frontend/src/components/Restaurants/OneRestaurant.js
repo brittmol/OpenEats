@@ -6,6 +6,7 @@ import CreateResForm from "../Reservations/CreateRes";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating/StarRating";
 import RestaurantReviews from "../Reviews/RestaurantReviews";
+import CreateReviewForm from "../Reviews/CreateReview";
 
 export default function OneRestaurant() {
   const dispatch = useDispatch();
@@ -18,10 +19,12 @@ export default function OneRestaurant() {
   const avgRating = (rest) => {
     if (reviews?.length) {
       const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-      const avg = Math.round(overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length)
-      return avg
+      const avg = Math.round(
+        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
+      );
+      return avg;
     }
-  }
+  };
 
   const [loaded, setLoaded] = useState(false);
 
@@ -75,6 +78,7 @@ export default function OneRestaurant() {
               <StarRating rating={avgRating(rest)} />
               <div>{rest?.description}</div>
               {/* <div>Reviews:</div> */}
+              <CreateReviewForm restId={restId} sessionUser={sessionUser} />
               <RestaurantReviews reviews={reviews} />
             </div>
           </div>

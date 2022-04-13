@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <LoginFormModal />
+        <LoginFormModal btnName={"Log In"} />
         <SignupFormModal />
       </>
     );
