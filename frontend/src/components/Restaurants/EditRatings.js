@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams, Redirect } from "react-router-dom";
-import { updateRestaurant, getRestaurants } from "../../store/restaurants";
+export const avgRating = (rest) => {
+  const reviews = rest?.reviews
+  if (reviews?.length) {
+    const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
+    const avg = (overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length).toFixed(1)
+    return avg;
+  }
 
-export default function EditRatings({rest}) {
-  return (
-    <>
-      <h1>Edit Restaurant Ratings</h1>
-    </>
-  );
 }

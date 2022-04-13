@@ -16,9 +16,7 @@ export default function AllRestaurants() {
     const reviews = rest?.Reviews;
     if (reviews?.length) {
       const overallRatingsArr = reviews?.map((rev) => rev?.ratingOverall);
-      const avg = Math.round(
-        overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length
-      );
+      const avg = (overallRatingsArr?.reduce((a, b) => a + b) / overallRatingsArr?.length).toFixed(1)
       return avg;
     }
   };
