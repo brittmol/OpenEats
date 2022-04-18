@@ -29,7 +29,9 @@ export default function ConfirmRes() {
         <div>{date(res?.time)}</div>
         <div>{time(res?.time)}</div>
         <div>{res?.numPpl} people</div>
-        <div>*Special Request: {res?.specialReq}</div>
+        {res?.specialReq ? (
+          <div>*Special Request: {res?.specialReq}</div>
+        ) : null}
       </div>
     </>
   );
