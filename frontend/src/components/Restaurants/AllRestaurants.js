@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
 import "./Restaurants.css";
 import StarRating from "../Reviews/StarRating/StarRating";
-import Search from "../Search"
+import Search from "../Search";
 
 import LoginFormModal from "../Auth/LoginFormModal";
 
@@ -52,34 +52,36 @@ export default function AllRestaurants() {
           <Search />
         </div>
       </div>
-      <div className="all-rest-cards">
-        {restArray?.map((rest) => (
-          <div key={rest?.id}>
-            <Link to={`/restaurants/${rest?.id}`}>
-              <div className="rest-card">
-                <div>
-                  <img
-                    src={rest?.image}
-                    alt="Not Found"
-                    onError={(e) =>
-                      (e.target.src =
-                        "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg")
-                    }
-                    // alt="https://wallpaperaccess.com/full/1322048.jpg"
-                  />
-                </div>
-                <div className="rest-card-text">
-                  <div className="title">{rest?.title}</div>
-                  <StarRating rating={avgRating(rest)} />
-                  <div>{rest?.Category?.type}</div>
+      <div className="white">
+        <div className="all-rest-cards">
+          {restArray?.map((rest) => (
+            <div key={rest?.id}>
+              <Link to={`/restaurants/${rest?.id}`}>
+                <div className="rest-card">
                   <div>
-                    {rest?.city}, {rest?.state}
+                    <img
+                      src={rest?.image}
+                      alt="Not Found"
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg")
+                      }
+                      // alt="https://wallpaperaccess.com/full/1322048.jpg"
+                    />
+                  </div>
+                  <div className="rest-card-text">
+                    <div className="title">{rest?.title}</div>
+                    <StarRating rating={avgRating(rest)} />
+                    <div>{rest?.Category?.type}</div>
+                    <div>
+                      {rest?.city}, {rest?.state}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

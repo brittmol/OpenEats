@@ -12,12 +12,13 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* font-family: Arial, Helvetica, sans-serif; */
   /* background-color: #f1f2f4; */
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 main {
   height: auto;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
+  /* background-color: #f1f2f4; */
 }
 
 footer {
@@ -31,7 +32,6 @@ footer {
   font-family: "Times New Roman", Times, serif;
   color: #d8d9db;
   padding: 30px 200px;
-
   /* margin-top: 400px; */
 }
 

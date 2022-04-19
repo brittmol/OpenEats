@@ -101,18 +101,24 @@ export default function UserReservations() {
 
   return (
     <>
-      <div>
+      <div className="user-header">
         <h1>{sessionUser?.firstName}'s Reservations:</h1>
       </div>
-      <div>
-        <div>
-          <h2>Upcoming Reservations</h2>
-          {resArrayFxn(futureRes)}
+      <div className="user-page">
+        <div className="side-nav">
+          <p>a</p>
+          <p>b</p>
         </div>
+        <div className="res-list">
+          <div className="future">
+            <h2>Upcoming Reservations</h2>
+            {resArrayFxn(futureRes)}
+          </div>
 
-        <div>
-          <h2>Past Reservations</h2>
-          {resArrayFxn(pastRes)}
+          <div className="past">
+            <h2>Past Reservations</h2>
+            {resArrayFxn(pastRes)}
+          </div>
         </div>
       </div>
     </>
