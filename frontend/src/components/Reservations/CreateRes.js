@@ -69,6 +69,7 @@ export default function CreateResForm({ restId, sessionUser }) {
           selected={time}
           onChange={(date) => setTime(date)}
           minDate={new Date()}
+          filterDate={(date) => new Date(date) > new Date()}
           //   filterDate={(date) => date.getDay() !== 6 && date.getDay() !== 0}
           dateFormat="MMMM d, yyyy"
         />
