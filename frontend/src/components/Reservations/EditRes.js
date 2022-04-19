@@ -61,7 +61,8 @@ export default function EditResForm() {
 
   return (
     <>
-      {res && res?.userId !== sessionUser?.id ? (
+      {(res && res?.userId !== sessionUser?.id) ||
+      new Date(res?.time) < new Date() ? (
         <Redirect to={`/users/${sessionUser?.id}/reservations`} />
       ) : null}
       <form onSubmit={handleSubmit} className="rsv-form">
