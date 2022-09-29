@@ -165,3 +165,8 @@
 /* form > button {
   width: fit-content;
 } */
+
+.search-page {
+  display: flex;
+  flex-direction: row;
+}

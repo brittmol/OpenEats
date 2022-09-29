@@ -49,35 +49,43 @@ export default function SearchResult() {
           <p>{searchArr.length} Restaurants Found</p>
         </div>
       </div>
-      <div>
-        {!searchArr.length && <h1>No Restaurants Found for {searchValue}</h1>}
-        {searchArr?.map((rest) => (
-          <div key={rest?.id}>
-            <Link to={`/restaurants/${rest?.id}`}>
-              <div className="rest-card">
-                <div>
-                  <img
-                    src={rest?.image}
-                    alt="Not Found"
-                    onError={(e) =>
-                      (e.target.src =
-                        "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg")
-                    }
-                    // alt="https://wallpaperaccess.com/full/1322048.jpg"
-                  />
-                </div>
-                <div className="rest-card-text">
-                  <div className="title">{rest?.title}</div>
-                  <StarRating rating={avgRating(rest)} />
-                  <div>{rest?.Category?.type}</div>
+      <div className="search-page">
+        <div className="filter-bar">
+          Cuisine, Time
+        </div>
+        <div className="rest-list">
+          <div>
+            Featured: Highest Rating, Name
+          </div>
+          {!searchArr.length && <h1>No Restaurants Found for {searchValue}</h1>}
+          {searchArr?.map((rest) => (
+            <div key={rest?.id}>
+              <Link to={`/restaurants/${rest?.id}`}>
+                <div className="rest-card">
                   <div>
-                    {rest?.city}, {rest?.state}
+                    <img
+                      src={rest?.image}
+                      alt="Not Found"
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://hesolutions.com.pk/wp-content/uploads/2019/01/picture-not-available.jpg")
+                      }
+                      // alt="https://wallpaperaccess.com/full/1322048.jpg"
+                    />
+                  </div>
+                  <div className="rest-card-text">
+                    <div className="title">{rest?.title}</div>
+                    <StarRating rating={avgRating(rest)} />
+                    <div>{rest?.Category?.type}</div>
+                    <div>
+                      {rest?.city}, {rest?.state}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
