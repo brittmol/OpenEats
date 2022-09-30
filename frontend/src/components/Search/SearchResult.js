@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
@@ -44,10 +44,15 @@ export default function SearchResult() {
     );
   });
 
+  const [searchCategory, setSearchCategory] = useState([]);
+
   // TODO: useEffect for filter searchArr
-  // useEffect(() => {
-  //   dispatch(getRestaurants());
-  // }, [dispatch]);
+  useEffect(() => {
+    searchArr = restArray?.filter((rest) => {
+      rest?.Category?.type?.includes(searchCategory)
+    });
+    console.log("set search cat", searchCategory);
+  }, [searchCategory, searchArr]);
 
   // console.log("searchArr", searchValue, searchArr);
 
@@ -64,8 +69,14 @@ export default function SearchResult() {
           <p>Cuisine</p>
           {categoriesArr?.map((category) => (
             <div>
-              <input type="checkbox" id={category?.id} value={category?.id} />
-              <label for={category?.id}>{category?.type}</label>
+              <input
+                type="checkbox"
+                key={category?.id}
+                id={category?.id}
+                value={category?.type}
+                onChange={(e) => setSearchCategory([e.target.value])}
+              />
+              <label htmlFor={category?.id}>{category?.type}</label>
             </div>
           ))}
         </div>
