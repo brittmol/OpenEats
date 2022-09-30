@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { getRestaurants } from "../../store/restaurants";
+import { getCategories } from "../../store/categories";
 import Search from ".";
 import StarRating from "../Reviews/StarRating/StarRating";
 
@@ -12,8 +13,12 @@ export default function SearchResult() {
   const restaurants = useSelector((store) => store.restaurantReducer);
   const restArray = Object.values(restaurants);
 
+  const categories = useSelector((store) => store.categoryReducer);
+  const categoriesArr = Object.values(categories);
+
   useEffect(() => {
     dispatch(getRestaurants());
+    dispatch(getCategories());
   }, [dispatch]);
 
   const avgRating = (rest) => {
@@ -30,7 +35,7 @@ export default function SearchResult() {
   let val = location.search.split("?query=")[1]; // || url string ;
   const searchValue = location.state?.detail || val;
 
-  console.log("searchValue", location.state);
+  // console.log("searchValue", location.state);
   let searchArr = restArray?.filter((rest) => {
     return (
       rest?.title?.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -39,7 +44,12 @@ export default function SearchResult() {
     );
   });
 
-  console.log("searchArr", searchValue, searchArr);
+  // TODO: useEffect for filter searchArr
+  // useEffect(() => {
+  //   dispatch(getRestaurants());
+  // }, [dispatch]);
+
+  // console.log("searchArr", searchValue, searchArr);
 
   return (
     <>
@@ -51,12 +61,16 @@ export default function SearchResult() {
       </div>
       <div className="search-page">
         <div className="filter-bar">
-          Cuisine, Time
+          <p>Cuisine</p>
+          {categoriesArr?.map((category) => (
+            <div>
+              <input type="checkbox" id={category?.id} value={category?.id} />
+              <label for={category?.id}>{category?.type}</label>
+            </div>
+          ))}
         </div>
         <div className="rest-list">
-          <div>
-            Featured: Highest Rating, Name
-          </div>
+          <div>Featured: Highest Rating, Name</div>
           {!searchArr.length && <h1>No Restaurants Found for {searchValue}</h1>}
           {searchArr?.map((rest) => (
             <div key={rest?.id}>
