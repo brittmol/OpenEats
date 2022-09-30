@@ -48,10 +48,14 @@ export default function SearchResult() {
 
   // TODO: useEffect for filter searchArr
   useEffect(() => {
-    searchArr = restArray?.filter((rest) => {
-      rest?.Category?.type?.includes(searchCategory)
+    console.log('b4 search arr', searchArr, searchCategory)
+    searchArr = searchArr?.filter((rest) => {
+      return (
+        rest?.Category?.type?.includes(searchCategory)
+      )
     });
     console.log("set search cat", searchCategory);
+    console.log("search arr", searchArr)
   }, [searchCategory, searchArr]);
 
   // console.log("searchArr", searchValue, searchArr);
@@ -74,7 +78,7 @@ export default function SearchResult() {
                 key={category?.id}
                 id={category?.id}
                 value={category?.type}
-                onChange={(e) => setSearchCategory([e.target.value])}
+                onChange={(e) => setSearchCategory(e.target.value)}
               />
               <label htmlFor={category?.id}>{category?.type}</label>
             </div>
