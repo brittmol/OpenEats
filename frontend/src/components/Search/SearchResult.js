@@ -48,6 +48,10 @@ export default function SearchResult() {
   const [searchCategory, setSearchCategory] = useState([]);
 
   // TODO: useEffect for filter searchArr
+  /*
+  - filtering use effect
+  - constantly updating search array
+  */
   useEffect(() => {
     console.log('b4 search arr', searchArr, searchCategory)
     searchArr = searchArr?.filter((rest) => {
