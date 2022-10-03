@@ -6,13 +6,6 @@ import { getCategories } from "../../store/categories";
 import Search from ".";
 import StarRating from "../Reviews/StarRating/StarRating";
 
-// will work on tomorrow
-/*
-  - filtering scheme
-  - visual aspects
-
-  add stuff
-*/
 
 export default function SearchResult() {
   const dispatch = useDispatch();
