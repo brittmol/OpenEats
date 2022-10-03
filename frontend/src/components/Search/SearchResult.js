@@ -10,6 +10,8 @@ import StarRating from "../Reviews/StarRating/StarRating";
 /*
   - filtering scheme
   - visual aspects
+
+  add stuff
 */
 
 export default function SearchResult() {
