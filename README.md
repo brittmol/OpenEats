@@ -1,6 +1,6 @@
 <h1 align='center' style='font-weight: bold'> OpenEats </h1>
 <div>
-<p align='center'> <a style='font-weight: bold' href='https://openeats-x.herokuapp.com/'>OpenEats</a> is a project, inspired by <a style='font-weight: bold' href='https://www.opentable.com//'>OpenTable</a>. 
+<p align='center'> <a style='font-weight: bold' href='https://open-eats.onrender.com/'>OpenEats</a> is a project, inspired by <a style='font-weight: bold' href='https://www.opentable.com//'>OpenTable</a>. 
   It's a platform where restaurant owners can host their restaurants, customers can book reservations at those restauranants, and rate their experience for future customers to see. 
 </br>
 </p>
